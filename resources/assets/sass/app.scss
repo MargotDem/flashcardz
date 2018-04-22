@@ -1,3 +1,10 @@
-body {
-  background: red;
-}
+// Variables
+@import "base/variables";
+@import "base/reset";
+// @import "base/mixins";
+
+// Components
+@import "components/app";
+
+// Pages
+// @import "pages/app";

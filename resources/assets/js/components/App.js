@@ -10,7 +10,7 @@ export default class App extends Component {
     return (
       <CookiesProvider>
         <HashRouter>
-          <div>
+          <div className='App'>
             <Scroller />
             <Body />
           </div>

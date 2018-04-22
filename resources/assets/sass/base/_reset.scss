@@ -1,0 +1,24 @@
+html {
+  font-family: sans-serif;
+  background-color: #f2f7ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: whitesmoke;
+  background: green;
+}
+
+::-moz-selection {
+  color: whitesmoke;
+  background: green;
+}
