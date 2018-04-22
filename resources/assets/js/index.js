@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from './Root'
-// import { unregister } from './registerServiceWorker'
+import App from './components/App'
 
-ReactDOM.render(<Root />, document.getElementById('root'))
-// unregister()
+ReactDOM.render(<App />, document.getElementById('root'))
