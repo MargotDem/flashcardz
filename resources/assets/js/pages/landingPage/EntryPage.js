@@ -19,6 +19,7 @@ class EntryPage extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   handleClick (form) {
@@ -41,17 +42,24 @@ class EntryPage extends Component {
     })
   }
 
+  handleKeyPress (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      this.handleSubmit()
+    }
+  }
+
   renderWelcomePage () {
     return (
       <div className='WelcomePage'>
-        <h2>FLASHCARDZ</h2>
+        <h2>flashcardz</h2>
         <section>
           <MuiThemeProvider theme={theme}>
             <Button variant='raised' color='primary' onClick={() => { this.handleClick('login') }}>
-              Login
+              login
             </Button>
           </MuiThemeProvider>
-          <a onClick={() => { this.handleClick('register') }}>Register</a>
+          <a onClick={() => { this.handleClick('register') }}>register</a>
         </section>
       </div>
     )
@@ -64,14 +72,26 @@ class EntryPage extends Component {
     return (
       <div className='ConnectionForm'>
         <form>
-          <input type='text' name='email' placeholder='Your email' onChange={this.handleInputChange} />
-          <input type='password' name='password' placeholder='Your password' onChange={this.handleInputChange} />
+          <input
+            type='text'
+            name='email'
+            placeholder='Your email'
+            onChange={this.handleInputChange}
+            onKeyPress={this.handleKeyPress}
+          />
+          <input
+            type='password'
+            name='password'
+            placeholder='Your password'
+            onChange={this.handleInputChange}
+            onKeyPress={this.handleKeyPress}
+          />
           <MuiThemeProvider theme={theme}>
             <Button variant='raised' color='primary' onClick={this.handleSubmit}>
               {
                 form === 'register'
-                ? 'Register'
-                : 'Login'
+                ? 'register'
+                : 'login'
               }
             </Button>
           </MuiThemeProvider>
@@ -79,8 +99,8 @@ class EntryPage extends Component {
         <a onClick={() => { this.handleClick(otherForm) }}>
           {
             form === 'register'
-            ? 'Login'
-            : 'Register'
+            ? 'login'
+            : 'register'
           }
         </a>
       </div>

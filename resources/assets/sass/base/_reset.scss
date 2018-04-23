@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $firstFont;
   color: $titleColor;
   letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 a {
@@ -37,6 +38,11 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+// <a> elements that are folders or lists
+.entry-anchor {
+  color: $textColor;
 }
 
 input {
@@ -49,4 +55,5 @@ input {
   font-size: 16px;
   outline: none;
   color: $textColor;
+  padding-bottom: 3px;
 }

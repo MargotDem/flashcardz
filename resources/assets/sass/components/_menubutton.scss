@@ -1,17 +1,18 @@
 .Menu {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  color: $lightTextColor;
+  top: 20px;
+  right: 20px;
+  color: $titleColor;
 }
 
 .Menu-icon {
   border-radius: 50%;
-  border: 1px solid $lightTextColor;
-  width: 30px;
-  height: 30px;
-  padding-left: 9px;
+  border: 1px solid $titleColor;
+  width: 35px;
+  height: 35px;
+  padding-left: 11px;
   padding-top: 5px;
+  font-size: 20px;
 }
 
 .Menu:hover {
@@ -20,7 +21,7 @@
 
 .Menu-dropdown {
   position: fixed;
-  top: 55px;
+  top: 60px;
   right: 15px;
   transition: 0.3s;
   opacity: 0;
