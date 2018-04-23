@@ -40,8 +40,8 @@ export default class Body extends Component {
   render () {
     const ROUTES = [
       this.buildRoute('/', true, LandingPage),
-      this.buildRoute('/folder/:name', true, Lists),
-      this.buildRoute('/list/:name', true, Words)
+      this.buildRoute('/folder/:name/:id', true, Lists),
+      this.buildRoute('/list/:name/:id', true, Words)
     ]
 
     return (

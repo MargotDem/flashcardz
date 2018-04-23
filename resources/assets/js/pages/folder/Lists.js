@@ -13,21 +13,24 @@ export default class Lists extends Component {
   }
 
   componentDidMount () {
-    axios.get('http://localhost:3334/api/lists')
+    let pathname = this.props.location.pathname
+    let listId = pathname.substring(pathname.lastIndexOf('/') + 1)
+    let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
+    let name = fullTitle.substring(0, fullTitle.lastIndexOf('/')).split('-').join(' ')
+
+    axios.get('http://localhost:3334/api/lists', {
+      params: {
+        listId: listId
+      }
+    })
     .then(response => {
-      console.log(response)
+      this.setState({
+        entries: response.data,
+        name: name
+      })
     })
     .catch(error => {
       console.log(error)
-    })
-
-    this.setState({
-      entries: [
-        { id: 1, name: 'list1' },
-        { id: 2, name: 'fakelist 2' },
-        { id: 3, name: 'fakelist with spaces' }
-      ],
-      folderName: 'some folder name'
     })
   }
 
@@ -38,7 +41,7 @@ export default class Lists extends Component {
           backButton
           editDeleteButtons
           type={'list'}
-          title={'folder: ' + this.state.folderName}
+          title={'folder: ' + this.state.name}
           entries={this.state.entries}
         />
       )

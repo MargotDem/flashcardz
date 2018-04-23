@@ -29,7 +29,7 @@ export default class Words extends Component {
         { id: 4, word: 'another word', translation: 'translation' },
         { id: 5, word: 'yet another word', translation: 'translation' }
       ],
-      folderName: 'some list name'
+      name: 'some list name'
     })
   }
 
@@ -41,7 +41,7 @@ export default class Words extends Component {
           editDeleteButtons
           learnModeButton
           type={'word'}
-          title={'list: ' + this.state.folderName}
+          title={'list: ' + this.state.name}
           entries={this.state.entries}
         />
       )

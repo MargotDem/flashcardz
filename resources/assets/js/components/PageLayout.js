@@ -28,7 +28,7 @@ export default class PageLayout extends Component {
             &nbsp;
             <a>delete</a>
           </span>
-          : <a className='entry-anchor' href={'#/' + type + '/' + name}>
+          : <a className='entry-anchor' href={'#/' + type + '/' + name + '/' + entry.id}>
             {entry.name}
           </a>
         }

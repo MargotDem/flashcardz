@@ -1,10 +1,13 @@
 'use strict'
 
+const Folder = use('App/Models/Folder')
+
 class FolderController {
   async index ({ request, auth }) {
     try {
-      await auth.check()
-      return 'true'
+      let user = await auth.getUser()
+      const folders = await Folder.findAll(user.id)
+      return folders
     } catch (error) {
       return 'false'
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import PageLayout from '../../components/PageLayout'
 
@@ -14,12 +15,14 @@ export default class Folders extends Component {
     // do display the menu button
     document.getElementById('Menu').style.visibility = 'visible'
 
-    this.setState({
-      entries: [
-        { id: 1, name: 'fakename1' },
-        { id: 2, name: 'fakename 2' },
-        { id: 3, name: 'fakename with spaces' }
-      ]
+    axios.get('http://localhost:3334/api/folders')
+    .then(response => {
+      this.setState({
+        entries: response.data
+      })
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 
