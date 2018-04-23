@@ -8,7 +8,6 @@ class LandingPage extends Component {
   render () {
     const { cookies } = this.props
     let user = cookies.get('user')
-    // cookies.set('user', 'namerandom', { maxAge: 7200 })
     if (user) {
       return <Folders />
     } else {

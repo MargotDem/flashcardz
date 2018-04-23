@@ -1,0 +1,33 @@
+.Menu {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  color: $lightTextColor;
+}
+
+.Menu-icon {
+  border-radius: 50%;
+  border: 1px solid $lightTextColor;
+  width: 30px;
+  height: 30px;
+  padding-left: 9px;
+  padding-top: 5px;
+}
+
+.Menu:hover {
+  cursor: pointer;
+}
+
+.Menu-dropdown {
+  position: fixed;
+  top: 55px;
+  right: 15px;
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Menu-dropdown_show {
+  opacity: 1;
+  visibility: visible;
+}

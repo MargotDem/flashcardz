@@ -1,8 +1,6 @@
 .WelcomePage {
-  display: flex;
-  flex-direction: column;
+  @include flex-column-center;
   justify-content: space-between;
-  align-items: center;
   height: 30vh;
   margin-top: 30vh;
 }
@@ -12,9 +10,26 @@
 }
 
 .WelcomePage section {
-  display: flex;
-  flex-direction: column;
+  @include flex-column-center;
   justify-content: space-between;
-  align-items: center;
   flex-grow: 1;
+}
+
+.ConnectionForm {
+  @include flex-column-center;
+  height: 30vh;
+  // background: yellow;
+  margin-top: 30vh;
+}
+
+.ConnectionForm form {
+  @include flex-column-center;
+}
+
+.ConnectionForm input {
+  margin: 20px 0px;
+}
+
+.ConnectionForm button {
+  margin: 30px 0px;
 }
