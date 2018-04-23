@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Button from 'material-ui/Button'
 import green from 'material-ui/colors/green'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import { withCookies } from 'react-cookie'
 import axios from 'axios'
 
 const theme = createMuiTheme({
@@ -11,7 +10,7 @@ const theme = createMuiTheme({
   }
 })
 
-class EntryPage extends Component {
+export default class EntryPage extends Component {
   constructor (props) {
     super(props)
     this.state = ({
@@ -29,17 +28,23 @@ class EntryPage extends Component {
     })
   }
 
+  componentDidMount () {
+    // do not display the menu button
+    document.getElementById('Menu').style.visibility = 'hidden'
+  }
+
   handleSubmit () {
-    const { cookies } = this.props
-    cookies.set('user', 'margot', { maxAge: 7200 })
-    window.location.reload()
-    // axios.get('http://localhost:3334/api/users')
-    // .then(response => {
-    //   console.log(response)
-    // })
-    // .catch(error => {
-    //   console.log(error)
-    // })
+    let { email, password } = this.state
+    axios.post('http://localhost:3334/api/user/login', {
+      email: email,
+      password: password
+    })
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   handleInputChange (e) {
@@ -128,5 +133,3 @@ class EntryPage extends Component {
     )
   }
 }
-
-export default withCookies(EntryPage)

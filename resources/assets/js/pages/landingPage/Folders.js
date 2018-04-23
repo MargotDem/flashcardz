@@ -11,6 +11,9 @@ export default class Folders extends Component {
   }
 
   componentDidMount () {
+    // do display the menu button
+    document.getElementById('Menu').style.visibility = 'visible'
+
     this.setState({
       entries: [
         { id: 1, name: 'fakename1' },

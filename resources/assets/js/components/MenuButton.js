@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { withCookies } from 'react-cookie'
+import axios from 'axios'
 
-class MenuButton extends Component {
+export default class MenuButton extends Component {
   constructor (props) {
     super(props)
     this.state = ({
@@ -11,46 +11,42 @@ class MenuButton extends Component {
   }
 
   handleMouseHovering (state) {
-    // let { showMenu } = this.state
     let showMenu = state === 'over'
-    ? true
-    : false
     this.setState({
       showMenu: showMenu
     })
   }
 
   logout () {
-    let { cookies } = this.props
-    cookies.remove('user')
-    window.location.reload()
+    axios.post('http://localhost:3334/api/user/logout')
+    .then(response => {
+      console.log(response)
+      window.location.reload()
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   render () {
-    let { cookies } = this.props
-    let user = cookies.get('user')
     let { showMenu } = this.state
-    if (user) {
-      return (
-        <div
-          className='Menu'
-          onMouseOver={() => { this.handleMouseHovering('over') }}
-          onMouseOut={() => { this.handleMouseHovering('out') }}
-        >
-          <div className='Menu-icon'>
-            <span>F</span>
-          </div>
-          <div
-            className={'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : '')}
-            onClick={this.logout.bind(this)}
-          >
-            Logout
-          </div>
+    return (
+      <div
+        className='Menu'
+        id='Menu'
+        onMouseOver={() => { this.handleMouseHovering('over') }}
+        onMouseOut={() => { this.handleMouseHovering('out') }}
+      >
+        <div className='Menu-icon'>
+          <span>F</span>
         </div>
-      )
-    }
-    return null
+        <div
+          className={'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : '')}
+          onClick={this.logout.bind(this)}
+        >
+          Logout
+        </div>
+      </div>
+    )
   }
 }
-
-export default withCookies(MenuButton)

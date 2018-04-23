@@ -20,13 +20,17 @@ const Route = use('Route')
 Route.resource('api/folders', 'FolderController')
   .apiOnly()
 
-Route.resource('api/lists', 'ListsController')
+Route.resource('api/lists', 'ListController')
   .apiOnly()
 
-Route.resource('api/words', 'WordsController')
+Route.resource('api/words', 'WordController')
   .apiOnly()
 
-Route.get('api/users', 'UserController.getUser')
+Route.post('api/user/login', 'UserController.login')
+
+Route.post('api/user/logout', 'UserController.logout')
+
+Route.get('api/user/check', 'UserController.check')
 
 // Route.get('api/users', async ({ response }) => {
 //   // const users = await User.all()
