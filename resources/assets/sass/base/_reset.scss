@@ -1,6 +1,7 @@
 html {
-  font-family: sans-serif;
-  background-color: #f2f7ff;
+  font-family: $secondFont, sans-serif;
+  background-color: $backgroudColor;
+  color: $textColor;
 }
 
 * {
@@ -21,4 +22,19 @@ html {
 ::-moz-selection {
   color: whitesmoke;
   background: green;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $firstFont;
+  color: $titleColor;
+  letter-spacing: 3px;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: underline;
+}
+
+a:hover {
+  cursor: pointer;
 }

@@ -1,0 +1,20 @@
+.WelcomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 30vh;
+  margin-top: 30vh;
+}
+
+.WelcomePage h2 {
+  flex-grow: 2;
+}
+
+.WelcomePage section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
