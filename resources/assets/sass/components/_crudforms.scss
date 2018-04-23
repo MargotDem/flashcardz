@@ -1,0 +1,16 @@
+.CrudForm {
+  display: none;
+}
+
+.CrudForm_show {
+  display: inline;
+}
+
+.CrudForm input, .CrudForm a {
+  display: inline;
+  margin: 0px 8px;
+}
+
+.CrudForm input {
+  height: 15px;
+}

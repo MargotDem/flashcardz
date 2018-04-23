@@ -3,6 +3,7 @@ import Button from 'material-ui/Button'
 import green from 'material-ui/colors/green'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import { withCookies } from 'react-cookie'
+import axios from 'axios'
 
 const theme = createMuiTheme({
   palette: {
@@ -29,9 +30,16 @@ class EntryPage extends Component {
   }
 
   handleSubmit () {
-    const { cookies } = this.props
-    cookies.set('user', 'margot', { maxAge: 7200 })
-    window.location.reload()
+    // const { cookies } = this.props
+    // cookies.set('user', 'margot', { maxAge: 7200 })
+    // window.location.reload()
+    axios.get('http://localhost:3334/api/users')
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   handleInputChange (e) {

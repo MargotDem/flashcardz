@@ -15,4 +15,23 @@
 
 const Route = use('Route')
 
+Route.resource('api/folders', 'FolderController')
+  .apiOnly()
+
+Route.resource('api/lists', 'ListsController')
+  .apiOnly()
+
+Route.resource('api/words', 'WordsController')
+  .apiOnly()
+
+Route.get('api/users', 'UserController.getUser')
+
+// Route.group(() => {
+//   Route.resource('folders', 'FolderController').apiOnly()
+//   Route.resource('lists', 'ListsController').apiOnly()
+//   Route.resource('words', 'WordsController').apiOnly()
+// })
+// .prefix('api/')
+// .apiOnly()
+
 Route.on('/').render('app')
