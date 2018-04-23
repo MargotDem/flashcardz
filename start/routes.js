@@ -1,5 +1,7 @@
 'use strict'
 
+const User = use('App/Models/User')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -25,6 +27,11 @@ Route.resource('api/words', 'WordsController')
   .apiOnly()
 
 Route.get('api/users', 'UserController.getUser')
+
+// Route.get('api/users', async ({ response }) => {
+//   // const users = await User.all()
+//   // response.send('hey')
+// })
 
 // Route.group(() => {
 //   Route.resource('folders', 'FolderController').apiOnly()

@@ -30,16 +30,16 @@ class EntryPage extends Component {
   }
 
   handleSubmit () {
-    // const { cookies } = this.props
-    // cookies.set('user', 'margot', { maxAge: 7200 })
-    // window.location.reload()
-    axios.get('http://localhost:3334/api/users')
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    const { cookies } = this.props
+    cookies.set('user', 'margot', { maxAge: 7200 })
+    window.location.reload()
+    // axios.get('http://localhost:3334/api/users')
+    // .then(response => {
+    //   console.log(response)
+    // })
+    // .catch(error => {
+    //   console.log(error)
+    // })
   }
 
   handleInputChange (e) {
