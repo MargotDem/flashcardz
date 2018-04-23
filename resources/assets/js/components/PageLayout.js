@@ -3,6 +3,8 @@ import Button from 'material-ui/Button'
 import green from 'material-ui/colors/green'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
+import AddForm from './AddForm'
+
 const theme = createMuiTheme({
   palette: {
     primary: green
@@ -65,7 +67,7 @@ export default class PageLayout extends Component {
         </section>
 
         <section className='AddButton'>
-          <a>add a {type}</a>
+          <AddForm type={type} />
         </section>
 
         <section>
