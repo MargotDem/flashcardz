@@ -12,14 +12,30 @@ const theme = createMuiTheme({
 export default class PageLayout extends Component {
   renderEntry (entry) {
     let { type } = this.props
-    let name = entry.name.split(' ').join('-')
+    let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
       <p key={entry.id}>
-        <a className='entry-anchor' href={'#/' + type + '/' + name}>
-          {entry.name}
-        </a>
+        {
+          type === 'word'
+          ? <span>
+            {entry.word}
+            :&nbsp;
+            {entry.translation}
+            &nbsp;
+            <a>edit</a>
+            &nbsp;
+            <a>delete</a>
+          </span>
+          : <a className='entry-anchor' href={'#/' + type + '/' + name}>
+            {entry.name}
+          </a>
+        }
       </p>
     )
+  }
+
+  handleBackClick () {
+    window.history.back()
   }
 
   render () {
@@ -28,7 +44,7 @@ export default class PageLayout extends Component {
       <div className='PageLayout'>
         {
           backButton && <section className='BackButton'>
-            <a>back</a>
+            <a onClick={() => { this.handleBackClick() }}>back</a>
           </section>
         }
 
@@ -56,7 +72,7 @@ export default class PageLayout extends Component {
           {
             learnModeButton && <MuiThemeProvider theme={theme}>
               <Button variant='raised' color='primary' onClick={() => { this.handleClick('login') }}>
-                learn stuff
+                learn that list
               </Button>
             </MuiThemeProvider>
           }

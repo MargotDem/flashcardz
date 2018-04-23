@@ -43,6 +43,11 @@ a:hover {
 // <a> elements that are folders or lists
 .entry-anchor {
   color: $textColor;
+  text-decoration: none;
+}
+
+.entry-anchor:hover {
+  text-decoration: underline;
 }
 
 input {

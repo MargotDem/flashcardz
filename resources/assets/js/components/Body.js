@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import LandingPage from '../pages/landingPage/LandingPage'
-import Folder from '../pages/folder/Folder'
-import List from '../pages/list/List'
+import Lists from '../pages/folder/Lists'
+import Words from '../pages/list/Words'
 
 export default class Body extends Component {
   buildRoute (path, isExact, Component) {
@@ -40,8 +40,8 @@ export default class Body extends Component {
   render () {
     const ROUTES = [
       this.buildRoute('/', true, LandingPage),
-      this.buildRoute('/folder/:name', true, Folder),
-      this.buildRoute('/list/:name', true, List)
+      this.buildRoute('/folder/:name', true, Lists),
+      this.buildRoute('/list/:name', true, Words)
     ]
 
     return (
