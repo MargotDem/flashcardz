@@ -1,0 +1,40 @@
+.LearningModePage {
+  @include flex-column-center;
+  justify-content: space-between;
+  height: 70vh;
+  margin-top: 20vh;
+  // background: lightgray;
+}
+
+.LearningModePage div {
+  // background: pink;
+}
+
+.Learn-Form, .Learn-Solution {
+  @include flex-column-center;
+  justify-content: center;
+}
+
+.Learn-Form {
+  height: 50%;
+}
+
+.Learn-Solution {
+  height: 40%;
+}
+
+.Learn-Solution-Word {
+  margin-top: 20px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Learn-Solution-Word_show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.Learn-Quit {
+  height: 10%;
+}

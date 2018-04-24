@@ -48,23 +48,28 @@ export default class Words extends Component {
   }
 
   render () {
-    let { isLearningModeOn } = this.state
+    let { isLearningModeOn, entries, name } = this.state
+    let learnModeButton = true
+    if (entries.length === 0) {
+      learnModeButton = false
+    }
     return (
       <div>
         {
           isLearningModeOn
           ? <LearningModePage
+            words={entries}
             switchLearnMode={this.switchLearnMode}
           />
           : <PageLayout
             backButton
             editDeleteButtons
-            learnModeButton
+            learnModeButton={learnModeButton}
             switchLearnMode={this.switchLearnMode}
             page={'list'}
             type={'word'}
-            title={'list: ' + this.state.name}
-            entries={this.state.entries}
+            title={'list: ' + name}
+            entries={entries}
           />
         }
       </div>
