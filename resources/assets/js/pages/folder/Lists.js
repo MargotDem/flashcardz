@@ -45,6 +45,7 @@ export default class Lists extends Component {
         type={'list'}
         title={'folder: ' + this.state.name}
         entries={this.state.entries}
+        pathname={this.props.location.pathname}
       />
     )
   }

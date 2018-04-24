@@ -12,6 +12,21 @@ class ListController {
       return 'false'
     }
   }
+
+  async store ({ request, auth }) {
+    try {
+      const { name, id } = request.all()
+
+      const newList = new List()
+
+      newList.name = name
+      newList.folder_id = id
+
+      await newList.save()
+    } catch (error) {
+      return 'false'
+    }
+  }
 }
 
 module.exports = ListController

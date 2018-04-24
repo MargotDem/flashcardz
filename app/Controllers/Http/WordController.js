@@ -12,6 +12,22 @@ class WordController {
       return 'false'
     }
   }
+
+  async store ({ request, auth }) {
+    try {
+      const { word, translation, id } = request.all()
+
+      const newWord = new Word()
+
+      newWord.word = word
+      newWord.translation = translation
+      newWord.list_id = id
+
+      await newWord.save()
+    } catch (error) {
+      return 'false'
+    }
+  }
 }
 
 module.exports = WordController

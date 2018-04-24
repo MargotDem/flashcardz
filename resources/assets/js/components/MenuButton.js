@@ -30,7 +30,6 @@ export default class MenuButton extends Component {
 
   componentDidMount () {
     // do not display the menu button
-    console.log(window.location.href)
     if (window.location.href === 'http://localhost:3334/#/' || window.location.href === 'production url') {
       document.getElementById('Menu').style.visibility = 'hidden'
     }

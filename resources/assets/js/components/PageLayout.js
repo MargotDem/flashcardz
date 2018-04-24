@@ -13,6 +13,7 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
+    // console.log(this.props);
     let { type } = this.props
     let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
