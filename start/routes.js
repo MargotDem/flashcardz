@@ -15,34 +15,19 @@
 
 const Route = use('Route')
 
-Route.resource('api/folders', 'FolderController')
-  .apiOnly()
+Route.group(() => {
+  Route.resource('folders', 'FolderController').apiOnly()
+  Route.resource('lists', 'ListController').apiOnly()
+  Route.resource('words', 'WordController').apiOnly()
+})
+.prefix('api/')
 
-Route.resource('api/lists', 'ListController')
-  .apiOnly()
-
-Route.resource('api/words', 'WordController')
-  .apiOnly()
-
-Route.post('api/user/login', 'UserController.login')
-
-Route.post('api/user/logout', 'UserController.logout')
-
-Route.post('api/user/register', 'UserController.register')
-
-Route.get('api/user/check', 'UserController.check')
-
-// Route.get('api/users', async ({ response }) => {
-//   // const users = await User.all()
-//   // response.send('hey')
-// })
-
-// Route.group(() => {
-//   Route.resource('folders', 'FolderController').apiOnly()
-//   Route.resource('lists', 'ListsController').apiOnly()
-//   Route.resource('words', 'WordsController').apiOnly()
-// })
-// .prefix('api/')
-// .apiOnly()
+Route.group(() => {
+  Route.post('login', 'UserController.login')
+  Route.post('logout', 'UserController.logout')
+  Route.post('register', 'UserController.register')
+  Route.get('check', 'UserController.check')
+})
+.prefix('api/user/')
 
 Route.on('/').render('app')
