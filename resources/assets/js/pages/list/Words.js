@@ -32,7 +32,8 @@ export default class Words extends Component {
     .then(response => {
       this.setState({
         entries: response.data,
-        name: name
+        name: name,
+        id: listId
       })
     })
     .catch(error => {
@@ -48,7 +49,7 @@ export default class Words extends Component {
   }
 
   render () {
-    let { isLearningModeOn, entries, name } = this.state
+    let { isLearningModeOn, entries, name, id } = this.state
     let learnModeButton = true
     if (entries.length === 0) {
       learnModeButton = false
@@ -67,6 +68,7 @@ export default class Words extends Component {
             learnModeButton={learnModeButton}
             switchLearnMode={this.switchLearnMode}
             page={'list'}
+            id={id}
             type={'word'}
             title={'list: ' + name}
             entries={entries}

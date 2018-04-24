@@ -29,7 +29,8 @@ export default class Lists extends Component {
     .then(response => {
       this.setState({
         entries: response.data,
-        name: name
+        name: name,
+        id: folderId
       })
     })
     .catch(error => {
@@ -38,14 +39,16 @@ export default class Lists extends Component {
   }
 
   render () {
+    let { name, id, entries } = this.state
     return (
       <PageLayout
         backButton
         editDeleteButtons
         page={'folder'}
         type={'list'}
-        title={'folder: ' + this.state.name}
-        entries={this.state.entries}
+        title={'folder: ' + name}
+        id={id}
+        entries={entries}
         pathname={this.props.location.pathname}
       />
     )

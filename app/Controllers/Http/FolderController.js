@@ -41,6 +41,17 @@ class FolderController {
       return 'false'
     }
   }
+
+  async update ({ request, auth }) {
+    try {
+      const { name, id } = request.all()
+      const folder = await Folder.find(id)
+      folder.name = name
+      await folder.save()
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 module.exports = FolderController

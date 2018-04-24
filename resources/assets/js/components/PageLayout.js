@@ -5,6 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 import AddForm from './AddForm'
 import DeleteForm from './DeleteForm'
+import EditForm from './EditForm'
 
 const theme = createMuiTheme({
   palette: {
@@ -42,7 +43,7 @@ export default class PageLayout extends Component {
   }
 
   render () {
-    let { page, type, backButton, title, editDeleteButtons, learnModeButton, switchLearnMode, entries } = this.props
+    let { page, type, backButton, title, id, editDeleteButtons, learnModeButton, switchLearnMode, entries } = this.props
     return (
       <div className='PageLayout'>
         {
@@ -60,7 +61,7 @@ export default class PageLayout extends Component {
 
           {
             editDeleteButtons && <div className='EditDeleteButtons'>
-              <a>edit</a>
+              <EditForm page={page} id={id} />
               &nbsp;
               <DeleteForm page={page} />
             </div>

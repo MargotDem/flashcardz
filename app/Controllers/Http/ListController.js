@@ -39,6 +39,17 @@ class ListController {
       return 'false'
     }
   }
+
+  async update ({ request, auth }) {
+    try {
+      const { name, id } = request.all()
+      const list = await List.find(id)
+      list.name = name
+      await list.save()
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 module.exports = ListController
