@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import PageLayout from '../../components/PageLayout'
+import { authCheck } from '../../lib/authCheck'
 
 export default class Lists extends Component {
   constructor (props) {
@@ -13,6 +14,8 @@ export default class Lists extends Component {
   }
 
   componentDidMount () {
+    authCheck(false)
+
     let pathname = this.props.location.pathname
     let folderId = pathname.substring(pathname.lastIndexOf('/') + 1)
     let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
@@ -35,18 +38,14 @@ export default class Lists extends Component {
   }
 
   render () {
-    if (true) {
-      return (
-        <PageLayout
-          backButton
-          editDeleteButtons
-          type={'list'}
-          title={'folder: ' + this.state.name}
-          entries={this.state.entries}
-        />
-      )
-    } else {
-      window.location = ''
-    }
+    return (
+      <PageLayout
+        backButton
+        editDeleteButtons
+        type={'list'}
+        title={'folder: ' + this.state.name}
+        entries={this.state.entries}
+      />
+    )
   }
 }

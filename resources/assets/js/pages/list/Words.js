@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import PageLayout from '../../components/PageLayout'
+import { authCheck } from '../../lib/authCheck'
 
 export default class Words extends Component {
   constructor (props) {
@@ -13,6 +14,8 @@ export default class Words extends Component {
   }
 
   componentDidMount () {
+    authCheck(false)
+
     let pathname = this.props.location.pathname
     let listId = pathname.substring(pathname.lastIndexOf('/') + 1)
     let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)

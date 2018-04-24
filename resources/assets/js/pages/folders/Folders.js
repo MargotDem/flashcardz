@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import PageLayout from '../../components/PageLayout'
+import { authCheck } from '../../lib/authCheck'
 
 export default class Folders extends Component {
   constructor (props) {
@@ -12,8 +13,7 @@ export default class Folders extends Component {
   }
 
   componentDidMount () {
-    // do display the menu button
-    document.getElementById('Menu').style.visibility = 'visible'
+    authCheck(false)
 
     axios.get('http://localhost:3334/api/folders')
     .then(response => {
