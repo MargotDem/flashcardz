@@ -33,9 +33,10 @@ export default class EntryPage extends Component {
     document.getElementById('Menu').style.visibility = 'hidden'
   }
 
-  handleSubmit () {
+  handleSubmit (form) {
+    // console.log(form)
     let { email, password } = this.state
-    axios.post('http://localhost:3334/api/user/login', {
+    axios.post('http://localhost:3334/api/user/' + form, {
       email: email,
       password: password
     })
@@ -101,7 +102,7 @@ export default class EntryPage extends Component {
             onKeyPress={this.handleKeyPress}
           />
           <MuiThemeProvider theme={theme}>
-            <Button variant='raised' color='primary' onClick={this.handleSubmit}>
+            <Button variant='raised' color='primary' onClick={() => { this.handleSubmit(form) }}>
               {
                 form === 'register'
                 ? 'register'

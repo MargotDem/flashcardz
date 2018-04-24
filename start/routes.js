@@ -28,6 +28,8 @@ Route.post('api/user/login', 'UserController.login')
 
 Route.post('api/user/logout', 'UserController.logout')
 
+Route.post('api/user/register', 'UserController.register')
+
 Route.get('api/user/check', 'UserController.check')
 
 // Route.get('api/users', async ({ response }) => {
