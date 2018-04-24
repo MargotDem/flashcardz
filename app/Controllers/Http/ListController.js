@@ -6,8 +6,7 @@ class ListController {
   async index ({ request, auth }) {
     try {
       await auth.check()
-      // return 'true'
-      const lists = await List.findAll(request.input('listId'))
+      const lists = await List.findAll(request.input('folderId'))
       return lists
     } catch (error) {
       return 'false'

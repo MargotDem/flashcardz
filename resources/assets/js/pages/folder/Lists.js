@@ -14,13 +14,13 @@ export default class Lists extends Component {
 
   componentDidMount () {
     let pathname = this.props.location.pathname
-    let listId = pathname.substring(pathname.lastIndexOf('/') + 1)
+    let folderId = pathname.substring(pathname.lastIndexOf('/') + 1)
     let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
     let name = fullTitle.substring(0, fullTitle.lastIndexOf('/')).split('-').join(' ')
 
     axios.get('http://localhost:3334/api/lists', {
       params: {
-        listId: listId
+        folderId: folderId
       }
     })
     .then(response => {

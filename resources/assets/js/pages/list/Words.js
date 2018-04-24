@@ -13,23 +13,24 @@ export default class Words extends Component {
   }
 
   componentDidMount () {
-    axios.get('http://localhost:3334/api/words')
+    let pathname = this.props.location.pathname
+    let listId = pathname.substring(pathname.lastIndexOf('/') + 1)
+    let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
+    let name = fullTitle.substring(0, fullTitle.lastIndexOf('/')).split('-').join(' ')
+
+    axios.get('http://localhost:3334/api/words', {
+      params: {
+        listId: listId
+      }
+    })
     .then(response => {
-      console.log(response)
+      this.setState({
+        entries: response.data,
+        name: name
+      })
     })
     .catch(error => {
       console.log(error)
-    })
-
-    this.setState({
-      entries: [
-        { id: 1, word: 'word 1', translation: 'translation' },
-        { id: 2, word: 'word 2', translation: 'translation' },
-        { id: 3, word: 'other word', translation: 'translation' },
-        { id: 4, word: 'another word', translation: 'translation' },
-        { id: 5, word: 'yet another word', translation: 'translation' }
-      ],
-      name: 'some list name'
     })
   }
 
