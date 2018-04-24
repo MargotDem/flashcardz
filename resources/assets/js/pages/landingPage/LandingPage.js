@@ -31,19 +31,10 @@ export default class LandingPage extends Component {
   }
 
   componentDidMount () {
-    // axios.get('http://localhost:3334/api/user/check')
-    // .then(response => {
-    //   if (response.data) {
-    //     window.location = '#/folders'
-    //   }
-    //   return null
-    // })
-    // .catch(error => {
-    //   console.log(error)
-    // })
+    // hide menu button
+    document.getElementById('Menu').style.visibility = 'hidden'
     authCheck(true)
   }
-
 
   handleSubmit (form) {
     let { email, password } = this.state
@@ -52,8 +43,7 @@ export default class LandingPage extends Component {
       password: password
     })
     .then(response => {
-      console.log(response)
-      window.location.reload()
+      authCheck(true)
     })
     .catch(error => {
       console.log(error)
@@ -69,9 +59,10 @@ export default class LandingPage extends Component {
   }
 
   handleKeyPress (event) {
+    let { form } = this.state
     if (event.key === 'Enter') {
       event.preventDefault()
-      this.handleSubmit()
+      this.handleSubmit(form)
     }
   }
 

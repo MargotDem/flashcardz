@@ -3,17 +3,18 @@
   top: 20px;
   right: 20px;
   color: $titleColor;
-  font-family: $firstFont;
+  font-family: $secondFont;
 }
 
 .Menu-icon {
   border-radius: 50%;
-  border: 1px solid $titleColor;
+  border: 2px solid $titleColor;
   width: 35px;
   height: 35px;
   padding-left: 10px;
-  padding-top: 5px;
+  padding-top: 4px;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .Menu:hover {

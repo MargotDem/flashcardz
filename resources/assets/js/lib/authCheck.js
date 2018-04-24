@@ -5,6 +5,8 @@ export function authCheck (checkIfConnected) {
   .then(response => {
     if (checkIfConnected) {
       if (response.data) {
+        // make the menu button visible
+        document.getElementById('Menu').style.visibility = 'visible'
         window.location = '#/folders'
       }
     } else {

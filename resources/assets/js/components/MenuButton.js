@@ -28,13 +28,6 @@ export default class MenuButton extends Component {
     })
   }
 
-  componentDidMount () {
-    // do not display the menu button
-    if (window.location.href === 'http://localhost:3334/#/' || window.location.href === 'production url') {
-      document.getElementById('Menu').style.visibility = 'hidden'
-    }
-  }
-
   render () {
     let { showMenu } = this.state
     return (
