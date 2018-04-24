@@ -26,7 +26,7 @@ export default class PageLayout extends Component {
             :&nbsp;
             {entry.translation}
             &nbsp;
-            <a>edit</a>
+            <EditForm wordId={entry.id} />
             &nbsp;
             <DeleteForm wordId={entry.id} />
           </span>

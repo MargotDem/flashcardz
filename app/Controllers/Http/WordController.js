@@ -40,6 +40,18 @@ class WordController {
       return 'false'
     }
   }
+
+  async update ({ request, auth }) {
+    try {
+      const { word, translation, id } = request.all()
+      const updatedWord = await Word.find(id)
+      updatedWord.word = word
+      updatedWord.translation = translation
+      await updatedWord.save()
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 module.exports = WordController

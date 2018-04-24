@@ -21,9 +21,14 @@ export default class EditForm extends Component {
   }
 
   handleSubmit () {
-    let { page, id } = this.props
+    let { page, id, wordId } = this.props
     let { name, word, translation } = this.state
     page += 's'
+
+    if (wordId) {
+      page = 'words'
+      id = wordId
+    }
 
     // let id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 
