@@ -42,7 +42,7 @@ export default class PageLayout extends Component {
   }
 
   render () {
-    let { page, type, backButton, title, editDeleteButtons, learnModeButton, entries } = this.props
+    let { page, type, backButton, title, editDeleteButtons, learnModeButton, switchLearnMode, entries } = this.props
     return (
       <div className='PageLayout'>
         {
@@ -74,7 +74,7 @@ export default class PageLayout extends Component {
         <section>
           {
             learnModeButton && <MuiThemeProvider theme={theme}>
-              <Button variant='raised' color='primary' onClick={() => { this.handleClick('login') }}>
+              <Button variant='raised' color='primary' onClick={() => { switchLearnMode() }}>
                 learn that list
               </Button>
             </MuiThemeProvider>

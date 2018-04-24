@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import PageLayout from '../../components/PageLayout'
+import LearningModePage from './LearningModePage'
 import { authCheck } from '../../lib/authCheck'
 
 export default class Words extends Component {
@@ -9,8 +10,10 @@ export default class Words extends Component {
     super(props)
     this.state = ({
       entries: [],
-      folderName: ''
+      name: '',
+      isLearningModeOn: false
     })
+    this.switchLearnMode = this.switchLearnMode.bind(this)
   }
 
   componentDidMount () {
@@ -37,17 +40,34 @@ export default class Words extends Component {
     })
   }
 
+  switchLearnMode () {
+    let { isLearningModeOn } = this.state
+    this.setState({
+      isLearningModeOn: !isLearningModeOn
+    })
+  }
+
   render () {
+    let { isLearningModeOn } = this.state
     return (
-      <PageLayout
-        backButton
-        editDeleteButtons
-        learnModeButton
-        page={'list'}
-        type={'word'}
-        title={'list: ' + this.state.name}
-        entries={this.state.entries}
-      />
+      <div>
+        {
+          isLearningModeOn
+          ? <LearningModePage
+            switchLearnMode={this.switchLearnMode}
+          />
+          : <PageLayout
+            backButton
+            editDeleteButtons
+            learnModeButton
+            switchLearnMode={this.switchLearnMode}
+            page={'list'}
+            type={'word'}
+            title={'list: ' + this.state.name}
+            entries={this.state.entries}
+          />
+        }
+      </div>
     )
   }
 }

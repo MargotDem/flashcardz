@@ -9,7 +9,7 @@ export default class Lists extends Component {
     super(props)
     this.state = ({
       entries: [],
-      folderName: ''
+      name: ''
     })
   }
 

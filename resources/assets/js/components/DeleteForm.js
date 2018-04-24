@@ -58,7 +58,7 @@ export default class AddForm extends Component {
   render () {
     let { showForm } = this.state
     return (
-      <div>
+      <span>
         <a onClick={() => { this.handleClick() }}>
           delete
         </a>
@@ -66,7 +66,7 @@ export default class AddForm extends Component {
           <a onClick={() => { this.handleSubmit() }}>yes, delete it</a>
           <a onClick={() => { this.handleClick() }}>no, don’t</a>
         </form>
-      </div>
+      </span>
     )
   }
 }
