@@ -8,9 +8,11 @@ export default class LearningModePage extends Component {
     this.state = ({
       words: [],
       wordToFind: [],
-      showSolution: false
+      showSolution: false,
+      icon: null
     })
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleResultIcon = this.toggleResultIcon.bind(this)
   }
 
   componentDidMount () {
@@ -50,13 +52,15 @@ export default class LearningModePage extends Component {
         this.setState({
           words: newWords,
           wordToFind: newWordToFind,
-          showSolution: false
+          showSolution: false,
+          icon: true
         })
       }
     } else {
       let newWordToFind = this.chooseRandomWord(words)
       this.setState({
-        wordToFind: newWordToFind
+        wordToFind: newWordToFind,
+        icon: false
       })
     }
   }
@@ -67,18 +71,35 @@ export default class LearningModePage extends Component {
     })
   }
 
+  toggleResultIcon () {
+    this.setState({
+      icon: null
+    })
+  }
+
   quit () {
     this.props.switchLearnMode()
   }
 
   render () {
-    let { showSolution, words, wordToFind } = this.state
+    let { showSolution, words, wordToFind, icon } = this.state
     if (words !== undefined && words.length > 0) {
       return (
         <div className='LearningModePage'>
           <div className='Learn-Form'>
-            <p>{wordToFind['translation']} ?</p>
-            <LearningModeForm handleSubmit={this.handleSubmit} />
+            <p>
+              {wordToFind['translation']} ?
+            </p>
+            <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIcon={this.toggleResultIcon} />
+            <p className='ResultIcon'>
+              {
+                icon !== null
+                ? <i
+                  className={'fa fa-' + (icon ? 'check' : 'times')}
+                />
+                : '...'
+              }
+            </p>
           </div>
           <div className='Learn-Solution'>
             <a onClick={() => { this.showSolution() }}>Solution</a>

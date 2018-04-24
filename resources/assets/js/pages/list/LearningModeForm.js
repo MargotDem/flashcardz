@@ -15,7 +15,7 @@ export default class LearningModeForm extends Component {
     this.setState({
       input: value
     })
-    this.showSolution = this.showSolution.bind(this)
+    this.props.toggleResultIcon()
   }
 
   handleKeyPress (event) {
