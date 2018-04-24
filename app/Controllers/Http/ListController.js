@@ -27,6 +27,18 @@ class ListController {
       return 'false'
     }
   }
+
+  async destroy ({ params, auth }) {
+    try {
+      await auth.check()
+      let id = params.id
+
+      const list = await List.find(id)
+      await list.delete()
+    } catch (error) {
+      return 'false'
+    }
+  }
 }
 
 module.exports = ListController

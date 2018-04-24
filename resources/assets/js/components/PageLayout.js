@@ -4,6 +4,7 @@ import green from 'material-ui/colors/green'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 import AddForm from './AddForm'
+import DeleteForm from './DeleteForm'
 
 const theme = createMuiTheme({
   palette: {
@@ -13,7 +14,6 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
-    // console.log(this.props);
     let { type } = this.props
     let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
@@ -27,7 +27,7 @@ export default class PageLayout extends Component {
             &nbsp;
             <a>edit</a>
             &nbsp;
-            <a>delete</a>
+            <DeleteForm wordId={entry.id} />
           </span>
           : <a className='entry-anchor' href={'#/' + type + '/' + name + '/' + entry.id}>
             {entry.name}
@@ -42,7 +42,7 @@ export default class PageLayout extends Component {
   }
 
   render () {
-    let { type, backButton, title, editDeleteButtons, learnModeButton, entries } = this.props
+    let { page, type, backButton, title, editDeleteButtons, learnModeButton, entries } = this.props
     return (
       <div className='PageLayout'>
         {
@@ -62,7 +62,7 @@ export default class PageLayout extends Component {
             editDeleteButtons && <div className='EditDeleteButtons'>
               <a>edit</a>
               &nbsp;
-              <a>delete</a>
+              <DeleteForm page={page} />
             </div>
           }
         </section>

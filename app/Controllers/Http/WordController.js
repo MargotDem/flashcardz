@@ -28,6 +28,18 @@ class WordController {
       return 'false'
     }
   }
+
+  async destroy ({ params, auth }) {
+    try {
+      await auth.check()
+      let id = params.id
+
+      const word = await Word.find(id)
+      await word.delete()
+    } catch (error) {
+      return 'false'
+    }
+  }
 }
 
 module.exports = WordController

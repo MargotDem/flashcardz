@@ -29,6 +29,18 @@ class FolderController {
       return 'false'
     }
   }
+
+  async destroy ({ params, auth }) {
+    try {
+      await auth.check()
+      let id = params.id
+
+      const folder = await Folder.find(id)
+      await folder.delete()
+    } catch (error) {
+      return 'false'
+    }
+  }
 }
 
 module.exports = FolderController

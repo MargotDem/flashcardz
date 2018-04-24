@@ -38,19 +38,16 @@ export default class Words extends Component {
   }
 
   render () {
-    if (true) {
-      return (
-        <PageLayout
-          backButton
-          editDeleteButtons
-          learnModeButton
-          type={'word'}
-          title={'list: ' + this.state.name}
-          entries={this.state.entries}
-        />
-      )
-    } else {
-      window.location = '/'
-    }
+    return (
+      <PageLayout
+        backButton
+        editDeleteButtons
+        learnModeButton
+        page={'list'}
+        type={'word'}
+        title={'list: ' + this.state.name}
+        entries={this.state.entries}
+      />
+    )
   }
 }

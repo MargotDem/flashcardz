@@ -42,6 +42,7 @@ export default class Lists extends Component {
       <PageLayout
         backButton
         editDeleteButtons
+        page={'folder'}
         type={'list'}
         title={'folder: ' + this.state.name}
         entries={this.state.entries}

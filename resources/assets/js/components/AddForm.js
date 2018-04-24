@@ -27,6 +27,11 @@ export default class AddForm extends Component {
 
     let id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 
+    // this feels really sloppy:
+    // when adding a folder: word, translation and id are not filled out
+    // when adding a list: word and translation are not here either
+    // when adding a word: name isn't here...
+    // but hey, javascript doesn't complain, so
     axios.post('http://localhost:3334/api/' + type, {
       name: name,
       word: word,
@@ -92,8 +97,8 @@ export default class AddForm extends Component {
               onKeyPress={this.handleKeyPress}
             />
           }
-          <a onClick={() => { this.handleSubmit() }}>add</a>
-          <a onClick={() => { this.handleClick() }}>&times;</a>
+          <a onClick={() => { this.handleSubmit() }}>let’s add it</a>
+          <a onClick={() => { this.handleClick() }}>nevermind</a>
         </form>
       </div>
     )
