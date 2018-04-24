@@ -28,6 +28,8 @@ export default class PageLayout extends Component {
             &nbsp;
             <EditForm wordId={entry.id} />
             &nbsp;
+            &bull;
+            &nbsp;
             <DeleteForm wordId={entry.id} />
           </span>
           : <a className='entry-anchor' href={'#/' + type + '/' + name + '/' + entry.id}>
@@ -62,6 +64,8 @@ export default class PageLayout extends Component {
           {
             editDeleteButtons && <div className='EditDeleteButtons'>
               <EditForm page={page} id={id} />
+              &nbsp;
+              &bull;
               &nbsp;
               <DeleteForm page={page} />
             </div>
