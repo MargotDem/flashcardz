@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 
+import LearningModeForm from './LearningModeForm'
+
 export default class LearningModePage extends Component {
   constructor (props) {
     super(props)
     this.state = ({
-      input: '',
       words: [],
-      wordToFind: []
+      wordToFind: [],
+      showSolution: false
     })
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   componentDidMount () {
@@ -30,53 +30,38 @@ export default class LearningModePage extends Component {
     return wordToFind
   }
 
-  handleSubmit () {
-    let { words, wordToFind, input } = this.state
-    if (input === wordToFind['word']) {
-      if (words.length === 1) {
+  handleSubmit (input) {
+    let { words, wordToFind } = this.state
+    let goodAnswer = input === wordToFind['word']
+    let itWasTheLastWord = words.length === 1
+
+    if (goodAnswer) {
+      if (itWasTheLastWord) {
         this.setState({
           words: []
         })
       } else {
-        words = words.filter(word => {
+        let newWords = words.filter(word => {
           return word['word'] !== wordToFind['word'] || word['translation'] !== wordToFind['translation']
         })
-        wordToFind = this.chooseRandomWord(words)
+
+        let newWordToFind = this.chooseRandomWord(newWords)
+
         this.setState({
-          words: words,
-          input: '',
-          wordToFind: wordToFind
+          words: newWords,
+          wordToFind: newWordToFind,
+          showSolution: false
         })
       }
     } else {
-      wordToFind = this.chooseRandomWord(words)
+      let newWordToFind = this.chooseRandomWord(words)
       this.setState({
-        words: words,
-        input: '',
-        wordToFind: wordToFind
+        wordToFind: newWordToFind
       })
     }
   }
 
-  // ewwww anti-separation of concerns
-  handleInputChange (e) {
-    let value = e.target.value
-    this.setState({
-      input: value,
-      showSolution: false
-    })
-    this.showSolution = this.showSolution.bind(this)
-  }
-
-  handleKeyPress (event) {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      this.handleSubmit()
-    }
-  }
-
   showSolution () {
-    console.log('lets show the solution yall')
     this.setState({
       showSolution: true
     })
@@ -87,21 +72,13 @@ export default class LearningModePage extends Component {
   }
 
   render () {
-    let { showSolution, words, input, wordToFind } = this.state
+    let { showSolution, words, wordToFind } = this.state
     if (words !== undefined && words.length > 0) {
       return (
         <div className='LearningModePage'>
           <div className='Learn-Form'>
             <p>{wordToFind['translation']} ?</p>
-            <form>
-              <input
-                type='text'
-                name='word'
-                onChange={this.handleInputChange}
-                onKeyPress={this.handleKeyPress}
-                value={input}
-              />
-            </form>
+            <LearningModeForm handleSubmit={this.handleSubmit} />
           </div>
           <div className='Learn-Solution'>
             <a onClick={() => { this.showSolution() }}>Solution</a>

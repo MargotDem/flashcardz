@@ -2,12 +2,6 @@
   @include flex-column-center;
   justify-content: space-between;
   height: 70vh;
-  margin-top: 20vh;
-  // background: lightgray;
-}
-
-.LearningModePage div {
-  // background: pink;
 }
 
 .Learn-Form, .Learn-Solution {
@@ -25,7 +19,6 @@
 
 .Learn-Solution-Word {
   margin-top: 20px;
-  transition: 0.5s;
   opacity: 0;
   visibility: hidden;
 }
