@@ -38,7 +38,7 @@ export default class LandingPage extends Component {
 
   handleSubmit (form) {
     let { email, password } = this.state
-    axios.post('http://localhost:3334/api/user/' + form, {
+    axios.post('/api/user/' + form, {
       email: email,
       password: password
     })

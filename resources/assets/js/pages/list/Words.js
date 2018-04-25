@@ -35,7 +35,7 @@ export default class Words extends Component {
     let pathname = this.props.location.pathname
     let name = newName || pathname.substring(6).split('-').join(' ')
 
-    axios.get('http://localhost:3334/api/words', {
+    axios.get('/api/words', {
       params: {
         listId: listId
       }

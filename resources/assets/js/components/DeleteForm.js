@@ -32,7 +32,7 @@ export default class AddForm extends Component {
     // console.log(id);
     // console.log(folderListState);
 
-    axios.delete('http://localhost:3334/api/' + page + '/' + id)
+    axios.delete('/api/' + page + '/' + id)
     .then(response => {
       if (page === 'folders') {
         window.location = '/#/folders'

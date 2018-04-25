@@ -33,7 +33,7 @@ export default class AddForm extends Component {
     // when adding a list: word and translation are not here either
     // when adding a word: name isn't here...
     // but hey, javascript doesn't complain, so
-    axios.post('http://localhost:3334/api/' + type, {
+    axios.post('/api/' + type, {
       name: name,
       word: word,
       translation: translation,

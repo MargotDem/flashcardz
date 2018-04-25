@@ -18,7 +18,7 @@ export default class MenuButton extends Component {
   }
 
   logout () {
-    axios.post('http://localhost:3334/api/user/logout')
+    axios.post('/api/user/logout')
     .then(response => {
       console.log(response)
       window.location.reload()

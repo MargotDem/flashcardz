@@ -1,20 +1,13 @@
 {
-  "name": "adonis-fullstack-app",
-  "version": "4.1.0",
-  "adonis-version": "4.1.0",
-  "description": "The fullstack application boilerplate for Adonisjs",
+  "name": "the-amazing-flashcardz",
+  "description": "A simple vocabulary-learning tool",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
     "dev": "npm run development",
-    "development": "node_modules/.bin/webpack --watch --hide-modules --progress"
+    "development": "cross-env NODE_ENV=development node_modules/.bin/webpack --watch --hide-modules --progress"
   },
-  "keywords": [
-    "adonisjs",
-    "adonis-app"
-  ],
-  "author": "",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {

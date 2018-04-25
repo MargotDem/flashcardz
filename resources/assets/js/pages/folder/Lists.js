@@ -32,7 +32,7 @@ export default class Lists extends Component {
     let pathname = this.props.location.pathname
     let name = newName || pathname.substring(8).split('-').join(' ')
 
-    axios.get('http://localhost:3334/api/lists', {
+    axios.get('/api/lists', {
       params: {
         folderId: folderId
       }

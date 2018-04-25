@@ -31,7 +31,7 @@ export default class EditForm extends Component {
     }
 
     // wow. so when you edit a word, the name field isnt filled out, so that the name of the list isnt updated...thats really bad code...
-    axios.put('http://localhost:3334/api/' + page + '/' + id, {
+    axios.put('/api/' + page + '/' + id, {
       name: name,
       word: word,
       translation: translation,

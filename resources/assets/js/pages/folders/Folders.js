@@ -19,7 +19,7 @@ export default class Folders extends Component {
   }
 
   fetchEntries () {
-    axios.get('http://localhost:3334/api/folders')
+    axios.get('/api/folders')
     .then(response => {
       this.setState({
         entries: response.data
