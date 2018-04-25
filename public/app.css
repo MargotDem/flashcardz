@@ -1,0 +1,190 @@
+html {
+  font-family: Roboto, sans-serif;
+  background-color: #f2f7ff;
+  color: #4f5763; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+::selection {
+  color: whitesmoke;
+  background: green; }
+
+::-moz-selection {
+  color: whitesmoke;
+  background: green; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat;
+  color: #0d2751;
+  letter-spacing: 3px;
+  text-transform: uppercase; }
+
+a {
+  color: #831f91;
+  text-decoration: underline; }
+
+a:hover {
+  cursor: pointer; }
+
+.entry-anchor {
+  color: #4f5763;
+  text-decoration: none; }
+
+.entry-anchor:hover {
+  text-decoration: underline; }
+
+input {
+  display: block;
+  height: 40px;
+  width: 180px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  font-size: 16px;
+  outline: none;
+  color: #4f5763;
+  padding-bottom: 3px; }
+
+.App {
+  width: 40vw;
+  margin: auto;
+  margin-top: 25vh;
+  overflow: scroll; }
+
+@media (max-width: 768px) {
+  .App {
+    width: 90vw;
+    margin-top: 25vh; } }
+
+.Menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #0d2751;
+  font-family: Roboto; }
+
+.Menu-icon {
+  border-radius: 50%;
+  border: 2px solid #0d2751;
+  width: 35px;
+  height: 35px;
+  padding-left: 10px;
+  padding-top: 4px;
+  font-size: 20px;
+  font-weight: bold; }
+
+.Menu:hover {
+  cursor: pointer; }
+
+.Menu-dropdown {
+  position: fixed;
+  top: 60px;
+  right: 15px;
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden; }
+
+.Menu-dropdown_show {
+  opacity: 1;
+  visibility: visible; }
+
+.PageLayout section {
+  margin-bottom: 50px; }
+
+.PageLayout p {
+  margin-bottom: 8px; }
+
+.EditDeleteButtons {
+  margin-top: 5px; }
+
+.CrudForm {
+  display: none; }
+
+.CrudForm_show {
+  display: inline; }
+
+.CrudForm input, .CrudForm a {
+  display: inline;
+  margin: 8px; }
+
+.CrudForm input {
+  height: 15px; }
+
+.WelcomePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 30vh;
+  margin-top: 15vh; }
+
+.WelcomePage h2 {
+  flex-grow: 2; }
+
+.WelcomePage section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1; }
+
+.ConnectionForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30vh;
+  margin-top: 15vh; }
+
+.ConnectionForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.ConnectionForm input {
+  margin: 20px 0px; }
+
+.ConnectionForm button {
+  margin: 30px 0px; }
+
+.LearningModePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh; }
+
+.Learn-Form, .Learn-Solution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.Learn-Form {
+  height: 50%; }
+
+.Learn-Solution {
+  height: 40%; }
+
+.Learn-Solution-Word {
+  margin-top: 20px;
+  opacity: 0;
+  visibility: hidden; }
+
+.Learn-Solution-Word_show {
+  opacity: 1;
+  visibility: visible; }
+
+.Learn-Quit {
+  height: 10%; }
+
+.ResultIcon {
+  margin-top: 10px; }
+
+.fa-check {
+  color: #4caf50; }
