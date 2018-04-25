@@ -10,16 +10,17 @@ export default class Body extends Component {
   constructor (props) {
     super(props)
     this.state = ({
-      folderId: 6,
-      listId: 13
+      folderId: 0,
+      listId: 0
     })
     this.changeFolderListState = this.changeFolderListState.bind(this)
   }
 
-  changeFolderListState (type, id) {
+  changeFolderListState (type, id, folderName) {
     type += 'Id'
     this.setState({
-      [type]: id
+      [type]: id,
+      folderName: folderName
     })
   }
 

@@ -22,17 +22,23 @@ export default class AddForm extends Component {
 
   handleSubmit () {
     // yay unreadable code
-    let { page, wordId } = this.props
+    let { page, id, wordId, folderListState } = this.props
     page += 's'
 
-    let id = wordId || window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
     if (wordId) {
       page = 'words'
+      id = wordId
     }
+    // console.log(id);
+    // console.log(folderListState);
 
     axios.delete('http://localhost:3334/api/' + page + '/' + id)
     .then(response => {
-      window.location = '/#/folders'
+      if (page === 'folders') {
+        window.location = '/#/folders'
+      } else {
+        window.location = '/#/folder/' + folderListState.folderName
+      }
       console.log(response)
     })
     .catch(error => {

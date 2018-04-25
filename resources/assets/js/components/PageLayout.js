@@ -15,7 +15,7 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
-    let { type, changeFolderListState } = this.props
+    let { type, folderListState, changeFolderListState } = this.props
     let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
       <p key={entry.id}>
@@ -35,7 +35,7 @@ export default class PageLayout extends Component {
           : <a
             className='entry-anchor'
             href={'#/' + type + '/' + name}
-            onClick={() => { changeFolderListState(type, entry.id) }}
+            onClick={() => { changeFolderListState(type, entry.id, (type === 'folder' ? entry.name : folderListState.folderName)) }}
             >
             {entry.name}
           </a>
@@ -49,7 +49,7 @@ export default class PageLayout extends Component {
   }
 
   render () {
-    let { page, type, backButton, title, id, editDeleteButtons, learnModeButton, switchLearnMode, entries } = this.props
+    let { page, type, backButton, title, id, editDeleteButtons, learnModeButton, switchLearnMode, entries, fetchEntries, folderListState } = this.props
     return (
       <div className='PageLayout'>
         {
@@ -67,17 +67,17 @@ export default class PageLayout extends Component {
 
           {
             editDeleteButtons && <div className='EditDeleteButtons'>
-              <EditForm page={page} id={id} />
+              <EditForm page={page} id={id} fetchEntries={fetchEntries} />
               &nbsp;
               &bull;
               &nbsp;
-              <DeleteForm page={page} />
+              <DeleteForm page={page} id={id} folderListState={folderListState} />
             </div>
           }
         </section>
 
         <section className='AddButton'>
-          <AddForm type={type} />
+          <AddForm type={type} id={id} fetchEntries={fetchEntries} />
         </section>
 
         <section>

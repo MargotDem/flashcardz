@@ -11,14 +11,18 @@ export default class Lists extends Component {
       entries: [],
       name: ''
     })
+    this.fetchEntries = this.fetchEntries.bind(this)
   }
 
   componentDidMount () {
     authCheck(false)
+    this.fetchEntries()
+  }
 
+  fetchEntries (newName) {
     let { folderId } = this.props.folderListState
     let pathname = this.props.location.pathname
-    let name = pathname.substring(8).split('-').join(' ')
+    let name = newName || pathname.substring(8).split('-').join(' ')
 
     axios.get('http://localhost:3334/api/lists', {
       params: {
@@ -39,17 +43,20 @@ export default class Lists extends Component {
 
   render () {
     let { name, id, entries } = this.state
-    let { changeFolderListState } = this.props
+    let { changeFolderListState, folderListState } = this.props
+    console.log(this.props.folderListState);
     return (
       <PageLayout
+        title={'folder: ' + name}
+        entries={entries}
+        fetchEntries={this.fetchEntries}
+        changeFolderListState={changeFolderListState}
+        folderListState={folderListState}
+        type={'list'}
+        page={'folder'}
+        id={id}
         backButton
         editDeleteButtons
-        page={'folder'}
-        type={'list'}
-        title={'folder: ' + name}
-        id={id}
-        entries={entries}
-        changeFolderListState={changeFolderListState}
       />
     )
   }

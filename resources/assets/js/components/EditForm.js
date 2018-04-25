@@ -21,7 +21,7 @@ export default class EditForm extends Component {
   }
 
   handleSubmit () {
-    let { page, id, wordId } = this.props
+    let { page, id, wordId, fetchEntries } = this.props
     let { name, word, translation } = this.state
     page += 's'
 
@@ -39,8 +39,8 @@ export default class EditForm extends Component {
       id: id
     })
     .then(response => {
-      console.log(response)
-      window.location = '#/folders'
+      this.handleClick()
+      fetchEntries(name)
     })
     .catch(error => {
       console.log(error)

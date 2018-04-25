@@ -10,11 +10,15 @@ export default class Folders extends Component {
     this.state = ({
       entries: []
     })
+    this.fetchEntries = this.fetchEntries.bind(this)
   }
 
   componentDidMount () {
     authCheck(false)
+    this.fetchEntries()
+  }
 
+  fetchEntries () {
     axios.get('http://localhost:3334/api/folders')
     .then(response => {
       this.setState({
@@ -31,10 +35,11 @@ export default class Folders extends Component {
     let { entries } = this.state
     return (
       <PageLayout
-        type={'folder'}
         title={'folders'}
         entries={entries}
+        fetchEntries={this.fetchEntries}
         changeFolderListState={changeFolderListState}
+        type={'folder'}
       />
     )
   }

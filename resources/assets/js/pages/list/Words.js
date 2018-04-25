@@ -14,14 +14,18 @@ export default class Words extends Component {
       isLearningModeOn: false
     })
     this.switchLearnMode = this.switchLearnMode.bind(this)
+    this.fetchEntries = this.fetchEntries.bind(this)
   }
 
   componentDidMount () {
     authCheck(false)
+    this.fetchEntries()
+  }
 
+  fetchEntries (newName) {
     let { listId } = this.props.folderListState
     let pathname = this.props.location.pathname
-    let name = pathname.substring(6).split('-').join(' ')
+    let name = newName || pathname.substring(6).split('-').join(' ')
 
     axios.get('http://localhost:3334/api/words', {
       params: {
@@ -49,6 +53,7 @@ export default class Words extends Component {
 
   render () {
     let { isLearningModeOn, entries, name, id } = this.state
+    let { folderListState } = this.props
     let learnModeButton = true
     if (entries.length === 0) {
       learnModeButton = false
@@ -62,15 +67,17 @@ export default class Words extends Component {
             switchLearnMode={this.switchLearnMode}
           />
           : <PageLayout
+            title={'list: ' + name}
+            entries={entries}
+            fetchEntries={this.fetchEntries}
+            type={'word'}
+            page={'list'}
+            id={id}
             backButton
             editDeleteButtons
             learnModeButton={learnModeButton}
             switchLearnMode={this.switchLearnMode}
-            page={'list'}
-            id={id}
-            type={'word'}
-            title={'list: ' + name}
-            entries={entries}
+            folderListState={folderListState}
           />
         }
       </div>

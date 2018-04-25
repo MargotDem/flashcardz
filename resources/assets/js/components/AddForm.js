@@ -21,11 +21,9 @@ export default class AddForm extends Component {
   }
 
   handleSubmit () {
-    let { type } = this.props
+    let { type, id, fetchEntries } = this.props
     let { name, word, translation } = this.state
     type += 's'
-
-    let id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 
     // this feels really sloppy:
     // when adding a folder: word, translation and id are not filled out
@@ -39,7 +37,8 @@ export default class AddForm extends Component {
       id: id
     })
     .then(response => {
-      window.location.reload()
+      this.handleClick()
+      fetchEntries()
     })
     .catch(error => {
       console.log(error)
