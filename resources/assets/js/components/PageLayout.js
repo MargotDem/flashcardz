@@ -15,7 +15,7 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
-    let { type } = this.props
+    let { type, changeFolderListState } = this.props
     let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
       <p key={entry.id}>
@@ -32,7 +32,11 @@ export default class PageLayout extends Component {
             &nbsp;
             <DeleteForm wordId={entry.id} />
           </span>
-          : <a className='entry-anchor' href={'#/' + type + '/' + name + '/' + entry.id}>
+          : <a
+            className='entry-anchor'
+            href={'#/' + type + '/' + name}
+            onClick={() => { changeFolderListState(type, entry.id) }}
+            >
             {entry.name}
           </a>
         }

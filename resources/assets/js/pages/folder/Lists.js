@@ -16,10 +16,9 @@ export default class Lists extends Component {
   componentDidMount () {
     authCheck(false)
 
+    let { folderId } = this.props.folderListState
     let pathname = this.props.location.pathname
-    let folderId = pathname.substring(pathname.lastIndexOf('/') + 1)
-    let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
-    let name = fullTitle.substring(0, fullTitle.lastIndexOf('/')).split('-').join(' ')
+    let name = pathname.substring(8).split('-').join(' ')
 
     axios.get('http://localhost:3334/api/lists', {
       params: {
@@ -40,6 +39,7 @@ export default class Lists extends Component {
 
   render () {
     let { name, id, entries } = this.state
+    let { changeFolderListState } = this.props
     return (
       <PageLayout
         backButton
@@ -49,7 +49,7 @@ export default class Lists extends Component {
         title={'folder: ' + name}
         id={id}
         entries={entries}
-        pathname={this.props.location.pathname}
+        changeFolderListState={changeFolderListState}
       />
     )
   }

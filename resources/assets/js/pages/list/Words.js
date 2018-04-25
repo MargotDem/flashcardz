@@ -19,10 +19,9 @@ export default class Words extends Component {
   componentDidMount () {
     authCheck(false)
 
+    let { listId } = this.props.folderListState
     let pathname = this.props.location.pathname
-    let listId = pathname.substring(pathname.lastIndexOf('/') + 1)
-    let fullTitle = pathname.substring(pathname.indexOf('folder/') + 7)
-    let name = fullTitle.substring(0, fullTitle.lastIndexOf('/')).split('-').join(' ')
+    let name = pathname.substring(6).split('-').join(' ')
 
     axios.get('http://localhost:3334/api/words', {
       params: {

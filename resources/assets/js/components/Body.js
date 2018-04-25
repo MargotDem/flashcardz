@@ -7,23 +7,43 @@ import Lists from '../pages/folder/Lists'
 import Words from '../pages/list/Words'
 
 export default class Body extends Component {
-  buildRoute (path, isExact, Component) {
+  constructor (props) {
+    super(props)
+    this.state = ({
+      folderId: 6,
+      listId: 13
+    })
+    this.changeFolderListState = this.changeFolderListState.bind(this)
+  }
+
+  changeFolderListState (type, id) {
+    type += 'Id'
+    this.setState({
+      [type]: id
+    })
+  }
+
+  buildRoute (path, isExact, Component, shouldReceiveFolderListState, shouldReceiveChangeFolderListState) {
     let routeObject = {
       'path': path,
       'isExact': isExact,
-      'Component': Component
+      'Component': Component,
+      'shouldReceiveFolderListState': shouldReceiveFolderListState,
+      'shouldReceiveChangeFolderListState': shouldReceiveChangeFolderListState
     }
     return routeObject
   }
 
   renderRoute (routeObject, index) {
     const Component = routeObject.Component
+    let folderListState = (routeObject.shouldReceiveFolderListState ? this.state : false)
+    let changeFolderListState = (routeObject.shouldReceiveChangeFolderListState ? this.changeFolderListState : false)
     return (
       <Route
         key={index}
         exact={routeObject.isExact}
         path={routeObject.path}
-        render={(props) => <Component {...props} />}
+        render={(props) => <Component {...props} folderListState={folderListState} changeFolderListState={changeFolderListState} />}
       />
     )
   }
@@ -40,10 +60,10 @@ export default class Body extends Component {
 
   render () {
     const ROUTES = [
-      this.buildRoute('/', true, LandingPage),
-      this.buildRoute('/folders', true, Folders),
-      this.buildRoute('/folder/:name/:id', true, Lists),
-      this.buildRoute('/list/:name/:id', true, Words)
+      this.buildRoute('/', true, LandingPage, false, false),
+      this.buildRoute('/folders', true, Folders, false, true),
+      this.buildRoute('/folder/:name', true, Lists, true, true),
+      this.buildRoute('/list/:name', true, Words, true, false)
     ]
 
     return (

@@ -27,11 +27,14 @@ export default class Folders extends Component {
   }
 
   render () {
+    let { changeFolderListState } = this.props
+    let { entries } = this.state
     return (
       <PageLayout
         type={'folder'}
         title={'folders'}
-        entries={this.state.entries}
+        entries={entries}
+        changeFolderListState={changeFolderListState}
       />
     )
   }
