@@ -45,7 +45,12 @@ export default class PageLayout extends Component {
   }
 
   handleBackClick () {
-    window.history.back()
+    let { folderListState, page } = this.props
+    if (page === 'list') {
+      window.location = '/#/folder/' + folderListState.folderName.split(' ').join('-')
+    } else {
+      window.location = '/#/folders'
+    }
   }
 
   render () {
