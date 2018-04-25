@@ -15,7 +15,7 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
-    let { type, folderListState, changeFolderListState } = this.props
+    let { type, folderListState, changeFolderListState, fetchEntries } = this.props
     let name = type !== 'word' && entry.name.split(' ').join('-')
     return (
       <p key={entry.id}>
@@ -26,11 +26,11 @@ export default class PageLayout extends Component {
             :&nbsp;
             {entry.translation}
             &nbsp;
-            <EditForm wordId={entry.id} />
+            <EditForm wordId={entry.id} fetchEntries={fetchEntries} />
             &nbsp;
             &bull;
             &nbsp;
-            <DeleteForm wordId={entry.id} />
+            <DeleteForm wordId={entry.id} fetchEntries={fetchEntries} />
           </span>
           : <a
             className='entry-anchor'
@@ -76,7 +76,7 @@ export default class PageLayout extends Component {
               &nbsp;
               &bull;
               &nbsp;
-              <DeleteForm page={page} id={id} folderListState={folderListState} />
+              <DeleteForm page={page} id={id} folderListState={folderListState} fetchEntries={fetchEntries} />
             </div>
           }
         </section>

@@ -19,7 +19,15 @@ export default class Words extends Component {
 
   componentDidMount () {
     authCheck(false)
-    this.fetchEntries()
+
+    let { folderListState } = this.props
+    let pageHasBeenReloaded = folderListState.listId === 0
+
+    if (pageHasBeenReloaded) {
+      window.location = '/#/folders'
+    } else {
+      this.fetchEntries()
+    }
   }
 
   fetchEntries (newName) {

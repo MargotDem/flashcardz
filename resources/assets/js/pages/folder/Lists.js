@@ -16,7 +16,15 @@ export default class Lists extends Component {
 
   componentDidMount () {
     authCheck(false)
-    this.fetchEntries()
+
+    let { folderListState } = this.props
+    let pageHasBeenReloaded = folderListState.folderId === 0
+
+    if (pageHasBeenReloaded) {
+      window.location = '/#/folders'
+    } else {
+      this.fetchEntries()
+    }
   }
 
   fetchEntries (newName) {
@@ -44,7 +52,6 @@ export default class Lists extends Component {
   render () {
     let { name, id, entries } = this.state
     let { changeFolderListState, folderListState } = this.props
-    console.log(this.props.folderListState);
     return (
       <PageLayout
         title={'folder: ' + name}

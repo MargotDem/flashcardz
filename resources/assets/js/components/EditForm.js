@@ -30,8 +30,7 @@ export default class EditForm extends Component {
       id = wordId
     }
 
-    // let id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
-
+    // wow. so when you edit a word, the name field isnt filled out, so that the name of the list isnt updated...thats really bad code...
     axios.put('http://localhost:3334/api/' + page + '/' + id, {
       name: name,
       word: word,

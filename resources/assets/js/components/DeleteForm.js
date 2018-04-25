@@ -22,7 +22,7 @@ export default class AddForm extends Component {
 
   handleSubmit () {
     // yay unreadable code
-    let { page, id, wordId, folderListState } = this.props
+    let { page, id, wordId, folderListState, fetchEntries } = this.props
     page += 's'
 
     if (wordId) {
@@ -36,8 +36,10 @@ export default class AddForm extends Component {
     .then(response => {
       if (page === 'folders') {
         window.location = '/#/folders'
-      } else {
+      } else if (page === 'lists') {
         window.location = '/#/folder/' + folderListState.folderName
+      } else {
+        fetchEntries()
       }
       console.log(response)
     })
