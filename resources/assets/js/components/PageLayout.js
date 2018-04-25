@@ -7,6 +7,8 @@ import AddForm from './AddForm'
 import DeleteForm from './DeleteForm'
 import EditForm from './EditForm'
 
+import { escapeHTML } from '../lib/escapeHTML'
+
 const theme = createMuiTheme({
   palette: {
     primary: green
@@ -22,9 +24,9 @@ export default class PageLayout extends Component {
         {
           type === 'word'
           ? <span>
-            {entry.word}
+            {escapeHTML(entry.word)}
             :&nbsp;
-            {entry.translation}
+            {escapeHTML(entry.translation)}
             &nbsp;
             <EditForm wordId={entry.id} fetchEntries={fetchEntries} />
             &nbsp;
@@ -35,9 +37,9 @@ export default class PageLayout extends Component {
           : <a
             className='entry-anchor'
             href={'#/' + type + '/' + name}
-            onClick={() => { changeFolderListState(type, entry.id, (type === 'folder' ? entry.name : folderListState.folderName)) }}
+            onClick={() => { changeFolderListState(type, entry.id, (type === 'folder' ? escapeHTML(entry.name) : folderListState.folderName)) }}
             >
-            {entry.name}
+            {escapeHTML(entry.name)}
           </a>
         }
       </p>
@@ -66,7 +68,7 @@ export default class PageLayout extends Component {
         <section>
           <div className='PageTitle'>
             <h2>
-              {title}
+              {escapeHTML(title)}
             </h2>
           </div>
 
@@ -94,6 +96,8 @@ export default class PageLayout extends Component {
             </MuiThemeProvider>
           }
         </section>
+
+        <section>&hellip;</section>
 
         <section>
           {

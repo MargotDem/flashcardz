@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import LearningModeForm from './LearningModeForm'
 
+import { escapeHTML } from '../../lib/escapeHTML'
+
 export default class LearningModePage extends Component {
   constructor (props) {
     super(props)
@@ -88,7 +90,7 @@ export default class LearningModePage extends Component {
         <div className='LearningModePage'>
           <div className='Learn-Form'>
             <p>
-              {wordToFind['translation']} ?
+              {escapeHTML(wordToFind['translation'])} ?
             </p>
             <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIcon={this.toggleResultIcon} />
             <p className='ResultIcon'>
@@ -104,7 +106,7 @@ export default class LearningModePage extends Component {
           <div className='Learn-Solution'>
             <a onClick={() => { this.showSolution() }}>Solution</a>
             <div className={'Learn-Solution-Word ' + (showSolution && 'Learn-Solution-Word_show')}>
-              {wordToFind['word']}
+              {escapeHTML(wordToFind['word'])}
             </div>
           </div>
           <div className='Learn-Quit'>

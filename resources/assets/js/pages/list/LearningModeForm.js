@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { escapeHTML } from '../../lib/escapeHTML'
+
 export default class LearningModeForm extends Component {
   constructor (props) {
     super(props)
@@ -42,7 +44,7 @@ export default class LearningModeForm extends Component {
           name='word'
           onChange={this.handleInputChange}
           onKeyPress={this.handleKeyPress}
-          value={input}
+          value={escapeHTML(input)}
         />
       </form>
     )
