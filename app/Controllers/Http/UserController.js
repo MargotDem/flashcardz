@@ -1,16 +1,37 @@
 'use strict'
 
 const User = use('App/Models/User')
+const { validate } = use('Validator')
 
 class UserController {
   getUser ({ request }) {
     return 'bonjour'
   }
 
-  async login ({ request, auth }) {
+  async login ({ request, auth, response, session }) {
+    const rules = {
+      email: 'required|email',
+      password: 'required'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept(['password'])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     const { email, password } = request.all()
-    await auth.attempt(email, password)
-    return 'Logged in successfully'
+
+    try {
+      await auth.attempt(email, password)
+      return 'true'
+    } catch (error) {
+      return 'false'
+    }
   }
 
   async check ({ request, auth }) {
@@ -26,7 +47,22 @@ class UserController {
     await auth.logout()
   }
 
-  async register ({ request, auth }) {
+  async register ({ request, response, session, auth }) {
+    const rules = {
+      email: 'required|email|unique:users,email',
+      password: 'required'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept(['password'])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     const { email, password } = request.all()
 
     const user = new User()

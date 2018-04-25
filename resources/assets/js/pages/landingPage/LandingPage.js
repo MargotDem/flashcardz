@@ -43,6 +43,9 @@ export default class LandingPage extends Component {
       password: password
     })
     .then(response => {
+      if (!response.data) {
+        console.log('unable to connect, either fields are not filled out correctly, or password / user mismatch')
+      }
       authCheck(true)
     })
     .catch(error => {

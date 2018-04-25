@@ -1,6 +1,7 @@
 'use strict'
 
 const Folder = use('App/Models/Folder')
+const { validate } = use('Validator')
 
 class FolderController {
   async index ({ request, auth }) {
@@ -13,7 +14,21 @@ class FolderController {
     }
   }
 
-  async store ({ request, auth }) {
+  async store ({ request, auth, session }) {
+    const rules = {
+      name: 'required|max:80'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept([])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     try {
       let user = await auth.getUser()
 
@@ -42,7 +57,21 @@ class FolderController {
     }
   }
 
-  async update ({ request, auth }) {
+  async update ({ request, auth, session }) {
+    const rules = {
+      name: 'required|max:80'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept([])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     try {
       const { name, id } = request.all()
       const folder = await Folder.find(id)

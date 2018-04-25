@@ -38,6 +38,7 @@ export default class EditForm extends Component {
       id: id
     })
     .then(response => {
+      console.log(response);
       this.handleClick()
       fetchEntries(name)
     })

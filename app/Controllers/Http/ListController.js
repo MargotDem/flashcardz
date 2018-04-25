@@ -1,6 +1,7 @@
 'use strict'
 
 const List = use('App/Models/List')
+const { validate } = use('Validator')
 
 class ListController {
   async index ({ request, auth }) {
@@ -13,7 +14,21 @@ class ListController {
     }
   }
 
-  async store ({ request, auth }) {
+  async store ({ request, auth, session }) {
+    const rules = {
+      name: 'required|max:80'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept([])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     try {
       const { name, id } = request.all()
 
@@ -40,7 +55,21 @@ class ListController {
     }
   }
 
-  async update ({ request, auth }) {
+  async update ({ request, auth, session }) {
+    const rules = {
+      name: 'required|max:80'
+    }
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashExcept([])
+
+      // return response.redirect('back')
+      return 'false'
+    }
+
     try {
       const { name, id } = request.all()
       const list = await List.find(id)

@@ -16,7 +16,10 @@ export default class AddForm extends Component {
   handleClick () {
     let { showForm } = this.state
     this.setState({
-      showForm: !showForm
+      showForm: !showForm,
+      name: '',
+      word: '',
+      translation: ''
     })
   }
 
@@ -74,6 +77,7 @@ export default class AddForm extends Component {
               type='text'
               name='name'
               placeholder='Name'
+              value={this.state.name}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
             />
@@ -83,6 +87,7 @@ export default class AddForm extends Component {
               type='text'
               name='word'
               placeholder='Word'
+              value={this.state.word}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
             />
@@ -92,6 +97,7 @@ export default class AddForm extends Component {
               type='text'
               name='translation'
               placeholder='Translation'
+              value={this.state.translation}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
             />
