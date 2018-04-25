@@ -1,31 +1,3 @@
-# Adonis fullstack application
+### A simple vocabulary learning tool
 
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
-
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
-
-## Setup
-
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+[Flashcardz](https://the-amazing-flashcardz.herokuapp.com) is a straightforward web app to store and learn lists of vocabulary. It is based on the [flashcards method](http://www.learningscientists.org/blog/2016/2/20-1).
