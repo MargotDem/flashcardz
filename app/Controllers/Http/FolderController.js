@@ -49,9 +49,7 @@ class FolderController {
     try {
       await auth.check()
       let id = params.id
-
-      const folder = await Folder.find(id)
-      await folder.delete()
+      await Folder.destroy(id)
     } catch (error) {
       return 'false'
     }

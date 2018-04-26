@@ -40658,7 +40658,7 @@ var LearningModePage = function (_Component) {
           words = _state.words,
           wordToFind = _state.wordToFind;
 
-      var goodAnswer = input === wordToFind['word'];
+      var goodAnswer = input.toLowerCase() === wordToFind['word'];
       var itWasTheLastWord = words.length === 1;
 
       if (goodAnswer) {

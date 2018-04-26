@@ -1,6 +1,7 @@
 'use strict'
 
 const Model = use('Model')
+const Word = use('App/Models/Word')
 
 class List extends Model {
   static async findAll (folderId) {
@@ -13,6 +14,16 @@ class List extends Model {
     } catch (error) {
       return 'i dont really know what i am doing'
     }
+  }
+  static async destroy (listId) {
+    const list = await List.find(listId)
+    await list.delete()
+
+    // find all words in list and delete them too
+    await Word
+            .query()
+            .where('list_id', listId)
+            .delete()
   }
 }
 

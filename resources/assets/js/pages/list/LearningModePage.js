@@ -36,7 +36,7 @@ export default class LearningModePage extends Component {
 
   handleSubmit (input) {
     let { words, wordToFind } = this.state
-    let goodAnswer = input === wordToFind['word']
+    let goodAnswer = input.toLowerCase() === wordToFind['word']
     let itWasTheLastWord = words.length === 1
 
     if (goodAnswer) {

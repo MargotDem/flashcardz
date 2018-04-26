@@ -47,9 +47,7 @@ class ListController {
     try {
       await auth.check()
       let id = params.id
-
-      const list = await List.find(id)
-      await list.delete()
+      await List.destroy(id)
     } catch (error) {
       return 'false'
     }
