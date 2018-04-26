@@ -70,14 +70,8 @@ input {
   font-family: Roboto; }
 
 .Menu-icon {
-  border-radius: 50%;
-  border: 2px solid #0d2751;
-  width: 35px;
-  height: 35px;
-  padding-left: 10px;
-  padding-top: 4px;
-  font-size: 20px;
-  font-weight: bold; }
+  width: 30px;
+  height: 26px; }
 
 .Menu:hover {
   cursor: pointer; }

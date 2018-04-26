@@ -37,8 +37,10 @@ export default class MenuButton extends Component {
         onMouseOver={() => { this.handleMouseHovering('over') }}
         onMouseOut={() => { this.handleMouseHovering('out') }}
       >
-        <div className='Menu-icon'>
-          <span>F</span>
+        <div>
+          <span>
+            <img className='Menu-icon' src='/icon.png' />
+          </span>
         </div>
         <div
           className={'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : '')}

@@ -40975,11 +40975,11 @@ var MenuButton = function (_Component) {
         },
         _react2.default.createElement(
           'div',
-          { className: 'Menu-icon' },
+          null,
           _react2.default.createElement(
             'span',
             null,
-            'F'
+            _react2.default.createElement('img', { className: 'Menu-icon', src: '/icon.png' })
           )
         ),
         _react2.default.createElement(
