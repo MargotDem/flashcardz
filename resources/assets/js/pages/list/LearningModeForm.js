@@ -13,11 +13,12 @@ export default class LearningModeForm extends Component {
   }
 
   handleInputChange (e) {
+    let { toggleResultIconAndSolution } = this.props
     let value = e.target.value
     this.setState({
       input: value
     })
-    this.props.toggleResultIcon()
+    toggleResultIconAndSolution()
   }
 
   handleKeyPress (event) {
@@ -29,7 +30,8 @@ export default class LearningModeForm extends Component {
 
   handleSubmit () {
     let { input } = this.state
-    this.props.handleSubmit(input)
+    let { handleSubmit } = this.props
+    handleSubmit(input)
     this.setState({
       input: ''
     })
@@ -41,7 +43,6 @@ export default class LearningModeForm extends Component {
       <form>
         <input
           type='text'
-          name='word'
           onChange={this.handleInputChange}
           onKeyPress={this.handleKeyPress}
           value={escapeHTML(input)}

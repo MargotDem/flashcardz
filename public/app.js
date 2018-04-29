@@ -40623,11 +40623,11 @@ var LearningModePage = function (_Component) {
     _this.state = {
       words: [],
       wordToFind: [],
-      showSolution: false,
+      solution: '',
       icon: null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.toggleResultIcon = _this.toggleResultIcon.bind(_this);
+    _this.toggleResultIconAndSolution = _this.toggleResultIconAndSolution.bind(_this);
     return _this;
   }
 
@@ -40676,7 +40676,7 @@ var LearningModePage = function (_Component) {
           this.setState({
             words: newWords,
             wordToFind: newWordToFind,
-            showSolution: false,
+            solution: '',
             icon: true
           });
         }
@@ -40684,22 +40684,28 @@ var LearningModePage = function (_Component) {
         var _newWordToFind = this.chooseRandomWord(words);
         this.setState({
           wordToFind: _newWordToFind,
+          solution: '',
           icon: false
         });
       }
     }
   }, {
     key: 'showSolution',
-    value: function showSolution() {
+    value: function showSolution(word) {
+      var words = this.state.words;
+
+      var newWordToFind = this.chooseRandomWord(words);
       this.setState({
-        showSolution: true
+        wordToFind: newWordToFind,
+        solution: word
       });
     }
   }, {
-    key: 'toggleResultIcon',
-    value: function toggleResultIcon() {
+    key: 'toggleResultIconAndSolution',
+    value: function toggleResultIconAndSolution() {
       this.setState({
-        icon: null
+        icon: null,
+        solution: ''
       });
     }
   }, {
@@ -40713,7 +40719,7 @@ var LearningModePage = function (_Component) {
       var _this2 = this;
 
       var _state2 = this.state,
-          showSolution = _state2.showSolution,
+          solution = _state2.solution,
           words = _state2.words,
           wordToFind = _state2.wordToFind,
           icon = _state2.icon;
@@ -40731,7 +40737,7 @@ var LearningModePage = function (_Component) {
               (0, _escapeHTML.escapeHTML)(wordToFind['translation']),
               ' ?'
             ),
-            _react2.default.createElement(_LearningModeForm2.default, { handleSubmit: this.handleSubmit, toggleResultIcon: this.toggleResultIcon }),
+            _react2.default.createElement(_LearningModeForm2.default, { handleSubmit: this.handleSubmit, toggleResultIconAndSolution: this.toggleResultIconAndSolution }),
             _react2.default.createElement(
               'p',
               { className: 'ResultIcon' },
@@ -40746,14 +40752,14 @@ var LearningModePage = function (_Component) {
             _react2.default.createElement(
               'a',
               { onClick: function onClick() {
-                  _this2.showSolution();
+                  _this2.showSolution(wordToFind['word']);
                 } },
               'Solution'
             ),
             _react2.default.createElement(
               'div',
-              { className: 'Learn-Solution-Word ' + (showSolution && 'Learn-Solution-Word_show') },
-              (0, _escapeHTML.escapeHTML)(wordToFind['word'])
+              { className: 'Learn-Solution-Word ' + (solution !== '' && 'Learn-Solution-Word_show') },
+              (0, _escapeHTML.escapeHTML)(solution)
             )
           ),
           _react2.default.createElement(
@@ -40844,11 +40850,13 @@ var LearningModeForm = function (_Component) {
   _createClass(LearningModeForm, [{
     key: 'handleInputChange',
     value: function handleInputChange(e) {
+      var toggleResultIconAndSolution = this.props.toggleResultIconAndSolution;
+
       var value = e.target.value;
       this.setState({
         input: value
       });
-      this.props.toggleResultIcon();
+      toggleResultIconAndSolution();
     }
   }, {
     key: 'handleKeyPress',
@@ -40862,8 +40870,9 @@ var LearningModeForm = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit() {
       var input = this.state.input;
+      var handleSubmit = this.props.handleSubmit;
 
-      this.props.handleSubmit(input);
+      handleSubmit(input);
       this.setState({
         input: ''
       });
@@ -40878,7 +40887,6 @@ var LearningModeForm = function (_Component) {
         null,
         _react2.default.createElement('input', {
           type: 'text',
-          name: 'word',
           onChange: this.handleInputChange,
           onKeyPress: this.handleKeyPress,
           value: (0, _escapeHTML.escapeHTML)(input)

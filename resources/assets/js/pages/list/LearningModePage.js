@@ -10,11 +10,11 @@ export default class LearningModePage extends Component {
     this.state = ({
       words: [],
       wordToFind: [],
-      showSolution: false,
+      solution: '',
       icon: null
     })
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.toggleResultIcon = this.toggleResultIcon.bind(this)
+    this.toggleResultIconAndSolution = this.toggleResultIconAndSolution.bind(this)
   }
 
   componentDidMount () {
@@ -54,7 +54,7 @@ export default class LearningModePage extends Component {
         this.setState({
           words: newWords,
           wordToFind: newWordToFind,
-          showSolution: false,
+          solution: '',
           icon: true
         })
       }
@@ -62,20 +62,25 @@ export default class LearningModePage extends Component {
       let newWordToFind = this.chooseRandomWord(words)
       this.setState({
         wordToFind: newWordToFind,
+        solution: '',
         icon: false
       })
     }
   }
 
-  showSolution () {
+  showSolution (word) {
+    let { words } = this.state
+    let newWordToFind = this.chooseRandomWord(words)
     this.setState({
-      showSolution: true
+      wordToFind: newWordToFind,
+      solution: word
     })
   }
 
-  toggleResultIcon () {
+  toggleResultIconAndSolution () {
     this.setState({
-      icon: null
+      icon: null,
+      solution: ''
     })
   }
 
@@ -84,15 +89,18 @@ export default class LearningModePage extends Component {
   }
 
   render () {
-    let { showSolution, words, wordToFind, icon } = this.state
+    let { solution, words, wordToFind, icon } = this.state
     if (words !== undefined && words.length > 0) {
       return (
         <div className='LearningModePage'>
+
           <div className='Learn-Form'>
             <p>
               {escapeHTML(wordToFind['translation'])} ?
             </p>
-            <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIcon={this.toggleResultIcon} />
+
+            <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIconAndSolution={this.toggleResultIconAndSolution} />
+
             <p className='ResultIcon'>
               {
                 icon !== null
@@ -103,15 +111,19 @@ export default class LearningModePage extends Component {
               }
             </p>
           </div>
+
           <div className='Learn-Solution'>
-            <a onClick={() => { this.showSolution() }}>Solution</a>
-            <div className={'Learn-Solution-Word ' + (showSolution && 'Learn-Solution-Word_show')}>
-              {escapeHTML(wordToFind['word'])}
+            <a onClick={() => { this.showSolution(wordToFind['word']) }}>Solution</a>
+
+            <div className={'Learn-Solution-Word ' + (solution !== '' && 'Learn-Solution-Word_show')}>
+              {escapeHTML(solution)}
             </div>
           </div>
+
           <div className='Learn-Quit'>
             <a onClick={() => { this.quit() }}>Quit</a>
           </div>
+
         </div>
       )
     } else {
