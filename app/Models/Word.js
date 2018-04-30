@@ -8,6 +8,7 @@ class Word extends Model {
       const words = await Word
         .query()
         .where('list_id', listId)
+        .orderBy('word')
         .fetch()
       return words
     } catch (error) {

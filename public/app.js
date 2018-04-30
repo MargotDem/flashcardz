@@ -39939,7 +39939,7 @@ var AddForm = function (_Component) {
         ),
         _react2.default.createElement(
           'form',
-          { className: 'AddForm CrudForm ' + (showForm && 'CrudForm_show') },
+          { className: 'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show') },
           type !== 'word' && _react2.default.createElement('input', {
             type: 'text',
             name: 'name',
@@ -39966,12 +39966,12 @@ var AddForm = function (_Component) {
           }),
           _react2.default.createElement(
             'a',
-            { onClick: function onClick() {
+            { style: { display: 'block' }, onClick: function onClick() {
                 _this3.handleSubmit();
               } },
             'let\u2019s add it'
           ),
-          _react2.default.createElement(
+          type !== 'word' && _react2.default.createElement(
             'a',
             { onClick: function onClick() {
                 _this3.handleClick();
@@ -40697,7 +40697,8 @@ var LearningModePage = function (_Component) {
       var newWordToFind = this.chooseRandomWord(words);
       this.setState({
         wordToFind: newWordToFind,
-        solution: word
+        solution: word,
+        icon: null
       });
     }
   }, {

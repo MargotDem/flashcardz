@@ -73,7 +73,8 @@ export default class LearningModePage extends Component {
     let newWordToFind = this.chooseRandomWord(words)
     this.setState({
       wordToFind: newWordToFind,
-      solution: word
+      solution: word,
+      icon: null
     })
   }
 

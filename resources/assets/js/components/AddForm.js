@@ -71,7 +71,7 @@ export default class AddForm extends Component {
         <a onClick={() => { this.handleClick() }}>
           add a {type}
         </a>
-        <form className={'AddForm CrudForm ' + (showForm && 'CrudForm_show')}>
+        <form className={'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show')}>
           {
             type !== 'word' && <input
               type='text'
@@ -102,8 +102,10 @@ export default class AddForm extends Component {
               onKeyPress={this.handleKeyPress}
             />
           }
-          <a onClick={() => { this.handleSubmit() }}>let’s add it</a>
-          <a onClick={() => { this.handleClick() }}>nevermind</a>
+          <a style={{display: 'block'}} onClick={() => { this.handleSubmit() }}>let’s add it</a>
+          {
+            type !== 'word' && <a onClick={() => { this.handleClick() }}>nevermind</a>
+          }
         </form>
       </div>
     )
