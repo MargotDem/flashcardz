@@ -17,8 +17,15 @@ const theme = createMuiTheme({
 
 export default class PageLayout extends Component {
   renderEntry (entry) {
-    let { type, folderListState, changeFolderListState, fetchEntries } = this.props
+    let {
+      type,
+      folderListState,
+      changeFolderListState,
+      fetchEntries
+    } = this.props
+
     let name = type !== 'word' && entry.name.split(' ').join('-')
+
     return (
       <p key={entry.id}>
         {
@@ -37,7 +44,15 @@ export default class PageLayout extends Component {
           : <a
             className='entry-anchor'
             href={'#/' + type + '/' + name}
-            onClick={() => { changeFolderListState(type, entry.id, (type === 'folder' ? escapeHTML(entry.name) : folderListState.folderName)) }}
+            onClick={() => {
+              changeFolderListState(
+                type,
+                entry.id,
+                (type === 'folder'
+                ? escapeHTML(entry.name)
+                : folderListState.folderName)
+              )
+            }}
             >
             {escapeHTML(entry.name)}
           </a>
@@ -56,41 +71,65 @@ export default class PageLayout extends Component {
   }
 
   render () {
-    let { page, type, backButton, title, id, editDeleteButtons, learnModeButton, switchLearnMode, entries, fetchEntries, folderListState } = this.props
+    let {
+      page,
+      type,
+      backButton,
+      title,
+      id,
+      editDeleteButtons,
+      learnModeButton,
+      switchLearnMode,
+      entries,
+      fetchEntries,
+      folderListState
+    } = this.props
+
     return (
       <div className='PageLayout'>
         {
-          backButton && <section className='BackButton'>
+          backButton && <section>
             <a onClick={() => { this.handleBackClick() }}>back</a>
           </section>
         }
 
         <section>
-          <div className='PageTitle'>
-            <h2>
-              {escapeHTML(title)}
-            </h2>
-          </div>
+          <h2>
+            {escapeHTML(title)}
+          </h2>
 
           {
             editDeleteButtons && <div className='EditDeleteButtons'>
-              <EditForm page={page} id={id} fetchEntries={fetchEntries} />
+              <EditForm
+                page={page}
+                id={id}
+                fetchEntries={fetchEntries}
+              />
               &nbsp;
               &bull;
               &nbsp;
-              <DeleteForm page={page} id={id} folderListState={folderListState} fetchEntries={fetchEntries} />
+              <DeleteForm
+                page={page}
+                id={id}
+                folderListState={folderListState}
+                fetchEntries={fetchEntries}
+              />
             </div>
           }
         </section>
 
-        <section className='AddButton'>
+        <section>
           <AddForm type={type} id={id} fetchEntries={fetchEntries} />
         </section>
 
         <section>
           {
             learnModeButton && <MuiThemeProvider theme={theme}>
-              <Button variant='raised' color='primary' onClick={() => { switchLearnMode() }}>
+              <Button
+                variant='raised'
+                color='primary'
+                onClick={() => { switchLearnMode() }}
+              >
                 learn that list
               </Button>
             </MuiThemeProvider>

@@ -4681,7 +4681,9 @@ var PageLayout = function (_Component) {
           changeFolderListState = _props.changeFolderListState,
           fetchEntries = _props.fetchEntries;
 
+
       var name = type !== 'word' && entry.name.split(' ').join('-');
+
       return _react2.default.createElement(
         'p',
         { key: entry.id },
@@ -4739,12 +4741,13 @@ var PageLayout = function (_Component) {
           fetchEntries = _props3.fetchEntries,
           folderListState = _props3.folderListState;
 
+
       return _react2.default.createElement(
         'div',
         { className: 'PageLayout' },
         backButton && _react2.default.createElement(
           'section',
-          { className: 'BackButton' },
+          null,
           _react2.default.createElement(
             'a',
             { onClick: function onClick() {
@@ -4757,25 +4760,30 @@ var PageLayout = function (_Component) {
           'section',
           null,
           _react2.default.createElement(
-            'div',
-            { className: 'PageTitle' },
-            _react2.default.createElement(
-              'h2',
-              null,
-              (0, _escapeHTML.escapeHTML)(title)
-            )
+            'h2',
+            null,
+            (0, _escapeHTML.escapeHTML)(title)
           ),
           editDeleteButtons && _react2.default.createElement(
             'div',
             { className: 'EditDeleteButtons' },
-            _react2.default.createElement(_EditForm2.default, { page: page, id: id, fetchEntries: fetchEntries }),
+            _react2.default.createElement(_EditForm2.default, {
+              page: page,
+              id: id,
+              fetchEntries: fetchEntries
+            }),
             '\xA0 \u2022 \xA0',
-            _react2.default.createElement(_DeleteForm2.default, { page: page, id: id, folderListState: folderListState, fetchEntries: fetchEntries })
+            _react2.default.createElement(_DeleteForm2.default, {
+              page: page,
+              id: id,
+              folderListState: folderListState,
+              fetchEntries: fetchEntries
+            })
           )
         ),
         _react2.default.createElement(
           'section',
-          { className: 'AddButton' },
+          null,
           _react2.default.createElement(_AddForm2.default, { type: type, id: id, fetchEntries: fetchEntries })
         ),
         _react2.default.createElement(
@@ -4786,9 +4794,13 @@ var PageLayout = function (_Component) {
             { theme: theme },
             _react2.default.createElement(
               _Button2.default,
-              { variant: 'raised', color: 'primary', onClick: function onClick() {
+              {
+                variant: 'raised',
+                color: 'primary',
+                onClick: function onClick() {
                   switchLearnMode();
-                } },
+                }
+              },
               'learn that list'
             )
           )
@@ -7951,17 +7963,6 @@ module.exports = __webpack_require__(155);
 "use strict";
 
 
-// console.log('VICTOIRE')
-// require('./bootstrap')
-__webpack_require__(156);
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -7979,6 +7980,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
 /***/ }),
+/* 156 */,
 /* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
