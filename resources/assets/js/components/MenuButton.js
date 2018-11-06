@@ -46,7 +46,7 @@ export default class MenuButton extends Component {
           className={'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : '')}
           onClick={this.logout.bind(this)}
         >
-          Logout
+          log out
         </div>
       </div>
     )

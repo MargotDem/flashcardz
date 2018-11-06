@@ -40660,7 +40660,7 @@ var LearningModePage = function (_Component) {
           words = _state.words,
           wordToFind = _state.wordToFind;
 
-      var goodAnswer = input.toLowerCase() === wordToFind['word'];
+      var goodAnswer = input.toLowerCase() === wordToFind['word'].toLowerCase();
       var itWasTheLastWord = words.length === 1;
 
       if (goodAnswer) {
@@ -40740,7 +40740,10 @@ var LearningModePage = function (_Component) {
               (0, _escapeHTML.escapeHTML)(wordToFind['translation']),
               ' ?'
             ),
-            _react2.default.createElement(_LearningModeForm2.default, { handleSubmit: this.handleSubmit, toggleResultIconAndSolution: this.toggleResultIconAndSolution }),
+            _react2.default.createElement(_LearningModeForm2.default, {
+              handleSubmit: this.handleSubmit,
+              toggleResultIconAndSolution: this.toggleResultIconAndSolution
+            }),
             _react2.default.createElement(
               'p',
               { className: 'ResultIcon' },
@@ -40999,7 +41002,7 @@ var MenuButton = function (_Component) {
             className: 'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : ''),
             onClick: this.logout.bind(this)
           },
-          'Logout'
+          'log out'
         )
       );
     }

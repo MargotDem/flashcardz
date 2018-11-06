@@ -36,7 +36,7 @@ export default class LearningModePage extends Component {
 
   handleSubmit (input) {
     let { words, wordToFind } = this.state
-    let goodAnswer = input.toLowerCase() === wordToFind['word']
+    let goodAnswer = input.toLowerCase() === wordToFind['word'].toLowerCase()
     let itWasTheLastWord = words.length === 1
 
     if (goodAnswer) {
@@ -100,7 +100,10 @@ export default class LearningModePage extends Component {
               {escapeHTML(wordToFind['translation'])} ?
             </p>
 
-            <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIconAndSolution={this.toggleResultIconAndSolution} />
+            <LearningModeForm
+              handleSubmit={this.handleSubmit}
+              toggleResultIconAndSolution={this.toggleResultIconAndSolution}
+            />
 
             <p className='ResultIcon'>
               {
