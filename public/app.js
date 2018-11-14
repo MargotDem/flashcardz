@@ -40657,7 +40657,8 @@ var LearningModePage = function (_Component) {
       words: [],
       wordToFind: [],
       solution: '',
-      icon: null
+      icon: null,
+      clearInput: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.toggleResultIconAndSolution = _this.toggleResultIconAndSolution.bind(_this);
@@ -40725,13 +40726,16 @@ var LearningModePage = function (_Component) {
   }, {
     key: 'showSolution',
     value: function showSolution(word) {
-      var words = this.state.words;
+      var _state2 = this.state,
+          words = _state2.words,
+          clearInput = _state2.clearInput;
 
       var newWordToFind = this.chooseRandomWord(words);
       this.setState({
         wordToFind: newWordToFind,
         solution: word,
-        icon: null
+        icon: null,
+        clearInput: !clearInput
       });
     }
   }, {
@@ -40752,11 +40756,12 @@ var LearningModePage = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _state2 = this.state,
-          solution = _state2.solution,
-          words = _state2.words,
-          wordToFind = _state2.wordToFind,
-          icon = _state2.icon;
+      var _state3 = this.state,
+          solution = _state3.solution,
+          words = _state3.words,
+          wordToFind = _state3.wordToFind,
+          icon = _state3.icon,
+          clearInput = _state3.clearInput;
 
       if (words !== undefined && words.length > 0) {
         return _react2.default.createElement(
@@ -40773,7 +40778,8 @@ var LearningModePage = function (_Component) {
             ),
             _react2.default.createElement(_LearningModeForm2.default, {
               handleSubmit: this.handleSubmit,
-              toggleResultIconAndSolution: this.toggleResultIconAndSolution
+              toggleResultIconAndSolution: this.toggleResultIconAndSolution,
+              clearInput: clearInput
             }),
             _react2.default.createElement(
               'p',
@@ -40914,11 +40920,23 @@ var LearningModeForm = function (_Component) {
         input: ''
       });
     }
+
+    // will have to change since this its going to be deprecated in React 17
+
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var next = nextProps.clearInput;
+      var current = this.props.clearInput;
+      next !== current && this.setState({ input: '' });
+    }
   }, {
     key: 'render',
     value: function render() {
       var input = this.state.input;
+      var clearInput = this.props.clearInput;
 
+      console.log(clearInput);
       return _react2.default.createElement(
         'form',
         null,

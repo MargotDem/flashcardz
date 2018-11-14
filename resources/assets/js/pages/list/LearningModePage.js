@@ -11,7 +11,8 @@ export default class LearningModePage extends Component {
       words: [],
       wordToFind: [],
       solution: '',
-      icon: null
+      icon: null,
+      clearInput: false
     })
     this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleResultIconAndSolution = this.toggleResultIconAndSolution.bind(this)
@@ -69,12 +70,13 @@ export default class LearningModePage extends Component {
   }
 
   showSolution (word) {
-    let { words } = this.state
+    let { words, clearInput } = this.state
     let newWordToFind = this.chooseRandomWord(words)
     this.setState({
       wordToFind: newWordToFind,
       solution: word,
-      icon: null
+      icon: null,
+      clearInput: !clearInput
     })
   }
 
@@ -90,7 +92,7 @@ export default class LearningModePage extends Component {
   }
 
   render () {
-    let { solution, words, wordToFind, icon } = this.state
+    let { solution, words, wordToFind, icon, clearInput } = this.state
     if (words !== undefined && words.length > 0) {
       return (
         <div className='LearningModePage'>
@@ -103,6 +105,7 @@ export default class LearningModePage extends Component {
             <LearningModeForm
               handleSubmit={this.handleSubmit}
               toggleResultIconAndSolution={this.toggleResultIconAndSolution}
+              clearInput={clearInput}
             />
 
             <p className='ResultIcon'>

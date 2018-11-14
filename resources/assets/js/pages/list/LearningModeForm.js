@@ -37,8 +37,17 @@ export default class LearningModeForm extends Component {
     })
   }
 
+  // will have to change since this its going to be deprecated in React 17
+  componentWillReceiveProps (nextProps) {
+    const next = nextProps.clearInput
+    const current = this.props.clearInput
+    next !== current && this.setState({ input: '' })
+  }
+
   render () {
     let { input } = this.state
+    const { clearInput } = this.props
+    console.log(clearInput)
     return (
       <form>
         <input
