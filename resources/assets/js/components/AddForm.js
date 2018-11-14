@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import formHandlers from '../lib/formHandlers'
+
 export default class AddForm extends Component {
   constructor (props) {
     super(props)
@@ -74,32 +76,38 @@ export default class AddForm extends Component {
         <form className={'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show')}>
           {
             type !== 'word' && <input
+              id='addName'
               type='text'
               name='name'
               placeholder='Name'
               value={this.state.name}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addName')}
             />
           }
           {
             type === 'word' && <input
+              id='addWord'
               type='text'
               name='word'
               placeholder='Word'
               value={this.state.word}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addWord')}
             />
           }
           {
             type === 'word' && <input
+              id='addTranslation'
               type='text'
               name='translation'
               placeholder='Translation'
               value={this.state.translation}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addTranslation')}
             />
           }
 

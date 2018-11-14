@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import formHandlers from '../lib/formHandlers'
+
 export default class EditForm extends Component {
   constructor (props) {
     super(props)
@@ -74,28 +76,34 @@ export default class EditForm extends Component {
           {
             !wordId && <input
               type='text'
+              id='editName'
               name='name'
               placeholder='Name'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editName')}
             />
           }
           {
             wordId && <input
               type='text'
+              id='editWord'
               name='word'
               placeholder='Word'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editWord')}
             />
           }
           {
             wordId && <input
               type='text'
+              id='editTranslation'
               name='translation'
               placeholder='Translation'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editTranslation')}
             />
           }
           <a onClick={() => { this.handleSubmit() }}>

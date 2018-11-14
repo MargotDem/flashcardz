@@ -39831,6 +39831,10 @@ var _axios = __webpack_require__(14);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _formHandlers = __webpack_require__(358);
+
+var _formHandlers2 = _interopRequireDefault(_formHandlers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -39942,28 +39946,40 @@ var AddForm = function (_Component) {
           'form',
           { className: 'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show') },
           type !== 'word' && _react2.default.createElement('input', {
+            id: 'addName',
             type: 'text',
             name: 'name',
             placeholder: 'Name',
             value: this.state.name,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addName');
+            }
           }),
           type === 'word' && _react2.default.createElement('input', {
+            id: 'addWord',
             type: 'text',
             name: 'word',
             placeholder: 'Word',
             value: this.state.word,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addWord');
+            }
           }),
           type === 'word' && _react2.default.createElement('input', {
+            id: 'addTranslation',
             type: 'text',
             name: 'translation',
             placeholder: 'Translation',
             value: this.state.translation,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addTranslation');
+            }
           }),
           _react2.default.createElement(
             'a',
@@ -40160,6 +40176,10 @@ var _axios = __webpack_require__(14);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _formHandlers = __webpack_require__(358);
+
+var _formHandlers2 = _interopRequireDefault(_formHandlers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -40271,24 +40291,36 @@ var EditForm = function (_Component) {
           { className: 'EditForm CrudForm ' + (showForm && 'CrudForm_show') },
           !wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editName',
             name: 'name',
             placeholder: 'Name',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editName');
+            }
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editWord',
             name: 'word',
             placeholder: 'Word',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editWord');
+            }
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editTranslation',
             name: 'translation',
             placeholder: 'Translation',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editTranslation');
+            }
           }),
           _react2.default.createElement(
             'a',
@@ -41108,6 +41140,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+/***/ }),
+/* 357 */,
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var formHandlers = {
+  handleHover: function handleHover(element) {
+    document.getElementById(element).focus();
+  }
+};
+
+exports.default = formHandlers;
 
 /***/ })
 /******/ ]);
