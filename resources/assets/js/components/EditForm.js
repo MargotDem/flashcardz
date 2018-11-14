@@ -98,8 +98,12 @@ export default class EditForm extends Component {
               onKeyPress={this.handleKeyPress}
             />
           }
-          <a onClick={() => { this.handleSubmit() }}>let’s edit it</a>
-          <a onClick={() => { this.handleClick() }}>nevermind</a>
+          <a onClick={() => { this.handleSubmit() }}>
+            <i className={'fa fa-check'} />
+          </a>
+          <a onClick={() => { this.handleClick() }}>
+            <i className={'fa fa-times'} />
+          </a>
         </form>
       </span>
     )

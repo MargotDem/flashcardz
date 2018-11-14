@@ -32,7 +32,7 @@ export default class AddForm extends Component {
     // when adding a folder: word, translation and id are not filled out
     // when adding a list: word and translation are not here either
     // when adding a word: name isn't here...
-    // but hey, javascript doesn't complain, so
+    // but hey, javascript doesn't complain, so...
     axios.post('/api/' + type, {
       name: name,
       word: word,
@@ -49,8 +49,8 @@ export default class AddForm extends Component {
   }
 
   handleInputChange (e) {
-    let field = e.target.name
-    let value = e.target.value
+    const field = e.target.name
+    const value = e.target.value
     this.setState({
       [field]: value
     })
@@ -102,9 +102,15 @@ export default class AddForm extends Component {
               onKeyPress={this.handleKeyPress}
             />
           }
-          <a style={{display: 'block'}} onClick={() => { this.handleSubmit() }}>let’s add it</a>
+
+          <a onClick={() => { this.handleSubmit() }}>
+            <i className={'fa fa-check'} />
+          </a>
+
           {
-            type !== 'word' && <a onClick={() => { this.handleClick() }}>nevermind</a>
+            type !== 'word' && <a onClick={() => { this.handleClick() }}>
+              <i className={'fa fa-times'} />
+            </a>
           }
         </form>
       </div>
