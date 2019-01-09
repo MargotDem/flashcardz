@@ -35,7 +35,12 @@ export default class PageLayout extends Component {
             :&nbsp;
             {escapeHTML(entry.translation)}
             &nbsp;
-            <EditForm wordId={entry.id} fetchEntries={fetchEntries} />
+            <EditForm
+              wordId={entry.id}
+              fetchEntries={fetchEntries}
+              word={entry.word}
+              translation={entry.translation}
+            />
             &nbsp;
             &bull;
             &nbsp;

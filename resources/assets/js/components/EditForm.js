@@ -65,7 +65,7 @@ export default class EditForm extends Component {
   }
 
   render () {
-    let { wordId } = this.props
+    let { wordId, word, translation } = this.props
     let { showForm } = this.state
     return (
       <span>
@@ -93,6 +93,7 @@ export default class EditForm extends Component {
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
               onMouseOver={() => formHandlers.handleHover('editWord')}
+              defaultValue={word}
             />
           }
           {
@@ -104,6 +105,7 @@ export default class EditForm extends Component {
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
               onMouseOver={() => formHandlers.handleHover('editTranslation')}
+              defaultValue={translation}
             />
           }
           <a onClick={() => { this.handleSubmit() }}>
