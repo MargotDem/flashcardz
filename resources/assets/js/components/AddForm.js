@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import formHandlers from '../lib/formHandlers'
+
 export default class AddForm extends Component {
   constructor (props) {
     super(props)
@@ -32,7 +34,7 @@ export default class AddForm extends Component {
     // when adding a folder: word, translation and id are not filled out
     // when adding a list: word and translation are not here either
     // when adding a word: name isn't here...
-    // but hey, javascript doesn't complain, so
+    // but hey, javascript doesn't complain, so...
     axios.post('/api/' + type, {
       name: name,
       word: word,
@@ -49,8 +51,8 @@ export default class AddForm extends Component {
   }
 
   handleInputChange (e) {
-    let field = e.target.name
-    let value = e.target.value
+    const field = e.target.name
+    const value = e.target.value
     this.setState({
       [field]: value
     })
@@ -74,37 +76,49 @@ export default class AddForm extends Component {
         <form className={'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show')}>
           {
             type !== 'word' && <input
+              id='addName'
               type='text'
               name='name'
               placeholder='Name'
               value={this.state.name}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addName')}
             />
           }
           {
             type === 'word' && <input
+              id='addWord'
               type='text'
               name='word'
               placeholder='Word'
               value={this.state.word}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addWord')}
             />
           }
           {
             type === 'word' && <input
+              id='addTranslation'
               type='text'
               name='translation'
               placeholder='Translation'
               value={this.state.translation}
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('addTranslation')}
             />
           }
-          <a style={{display: 'block'}} onClick={() => { this.handleSubmit() }}>let’s add it</a>
+
+          <a onClick={() => { this.handleSubmit() }}>
+            <i className={'fa fa-check'} />
+          </a>
+
           {
-            type !== 'word' && <a onClick={() => { this.handleClick() }}>nevermind</a>
+            type !== 'word' && <a onClick={() => { this.handleClick() }}>
+              <i className={'fa fa-times'} />
+            </a>
           }
         </form>
       </div>

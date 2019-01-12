@@ -4681,7 +4681,9 @@ var PageLayout = function (_Component) {
           changeFolderListState = _props.changeFolderListState,
           fetchEntries = _props.fetchEntries;
 
+
       var name = type !== 'word' && entry.name.split(' ').join('-');
+
       return _react2.default.createElement(
         'p',
         { key: entry.id },
@@ -4692,7 +4694,12 @@ var PageLayout = function (_Component) {
           ':\xA0',
           (0, _escapeHTML.escapeHTML)(entry.translation),
           '\xA0',
-          _react2.default.createElement(_EditForm2.default, { wordId: entry.id, fetchEntries: fetchEntries }),
+          _react2.default.createElement(_EditForm2.default, {
+            wordId: entry.id,
+            fetchEntries: fetchEntries,
+            word: entry.word,
+            translation: entry.translation
+          }),
           '\xA0 \u2022 \xA0',
           _react2.default.createElement(_DeleteForm2.default, { wordId: entry.id, fetchEntries: fetchEntries })
         ) : _react2.default.createElement(
@@ -4731,6 +4738,7 @@ var PageLayout = function (_Component) {
           type = _props3.type,
           backButton = _props3.backButton,
           title = _props3.title,
+          name = _props3.name,
           id = _props3.id,
           editDeleteButtons = _props3.editDeleteButtons,
           learnModeButton = _props3.learnModeButton,
@@ -4739,12 +4747,13 @@ var PageLayout = function (_Component) {
           fetchEntries = _props3.fetchEntries,
           folderListState = _props3.folderListState;
 
+
       return _react2.default.createElement(
         'div',
         { className: 'PageLayout' },
         backButton && _react2.default.createElement(
           'section',
-          { className: 'BackButton' },
+          null,
           _react2.default.createElement(
             'a',
             { onClick: function onClick() {
@@ -4757,25 +4766,31 @@ var PageLayout = function (_Component) {
           'section',
           null,
           _react2.default.createElement(
-            'div',
-            { className: 'PageTitle' },
-            _react2.default.createElement(
-              'h2',
-              null,
-              (0, _escapeHTML.escapeHTML)(title)
-            )
+            'h2',
+            null,
+            (0, _escapeHTML.escapeHTML)(title)
           ),
           editDeleteButtons && _react2.default.createElement(
             'div',
             { className: 'EditDeleteButtons' },
-            _react2.default.createElement(_EditForm2.default, { page: page, id: id, fetchEntries: fetchEntries }),
+            _react2.default.createElement(_EditForm2.default, {
+              page: page,
+              id: id,
+              fetchEntries: fetchEntries,
+              name: name
+            }),
             '\xA0 \u2022 \xA0',
-            _react2.default.createElement(_DeleteForm2.default, { page: page, id: id, folderListState: folderListState, fetchEntries: fetchEntries })
+            _react2.default.createElement(_DeleteForm2.default, {
+              page: page,
+              id: id,
+              folderListState: folderListState,
+              fetchEntries: fetchEntries
+            })
           )
         ),
         _react2.default.createElement(
           'section',
-          { className: 'AddButton' },
+          null,
           _react2.default.createElement(_AddForm2.default, { type: type, id: id, fetchEntries: fetchEntries })
         ),
         _react2.default.createElement(
@@ -4786,9 +4801,13 @@ var PageLayout = function (_Component) {
             { theme: theme },
             _react2.default.createElement(
               _Button2.default,
-              { variant: 'raised', color: 'primary', onClick: function onClick() {
+              {
+                variant: 'raised',
+                color: 'primary',
+                onClick: function onClick() {
                   switchLearnMode();
-                } },
+                }
+              },
               'learn that list'
             )
           )
@@ -7931,7 +7950,24 @@ Object.defineProperty(exports, 'withTheme', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 153 */,
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var formHandlers = {
+  handleHover: function handleHover(element) {
+    document.getElementById(element).focus();
+  }
+};
+
+exports.default = formHandlers;
+
+/***/ }),
 /* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7952,9 +7988,21 @@ module.exports = __webpack_require__(156);
 "use strict";
 
 
-// console.log('VICTOIRE')
-// require('./bootstrap')
-__webpack_require__(359);
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(42);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _App = __webpack_require__(167);
+
+var _App2 = _interopRequireDefault(_App);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
 /***/ }),
 /* 157 */
@@ -39808,6 +39856,10 @@ var _axios = __webpack_require__(14);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _formHandlers = __webpack_require__(153);
+
+var _formHandlers2 = _interopRequireDefault(_formHandlers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -39868,7 +39920,7 @@ var AddForm = function (_Component) {
       // when adding a folder: word, translation and id are not filled out
       // when adding a list: word and translation are not here either
       // when adding a word: name isn't here...
-      // but hey, javascript doesn't complain, so
+      // but hey, javascript doesn't complain, so...
       _axios2.default.post('/api/' + type, {
         name: name,
         word: word,
@@ -39919,42 +39971,54 @@ var AddForm = function (_Component) {
           'form',
           { className: 'AddForm CrudForm ' + ((showForm || type === 'word') && 'CrudForm_show') },
           type !== 'word' && _react2.default.createElement('input', {
+            id: 'addName',
             type: 'text',
             name: 'name',
             placeholder: 'Name',
             value: this.state.name,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addName');
+            }
           }),
           type === 'word' && _react2.default.createElement('input', {
+            id: 'addWord',
             type: 'text',
             name: 'word',
             placeholder: 'Word',
             value: this.state.word,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addWord');
+            }
           }),
           type === 'word' && _react2.default.createElement('input', {
+            id: 'addTranslation',
             type: 'text',
             name: 'translation',
             placeholder: 'Translation',
             value: this.state.translation,
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('addTranslation');
+            }
           }),
           _react2.default.createElement(
             'a',
-            { style: { display: 'block' }, onClick: function onClick() {
+            { onClick: function onClick() {
                 _this3.handleSubmit();
               } },
-            'let\u2019s add it'
+            _react2.default.createElement('i', { className: 'fa fa-check' })
           ),
           type !== 'word' && _react2.default.createElement(
             'a',
             { onClick: function onClick() {
                 _this3.handleClick();
               } },
-            'nevermind'
+            _react2.default.createElement('i', { className: 'fa fa-times' })
           )
         )
       );
@@ -40137,6 +40201,10 @@ var _axios = __webpack_require__(14);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _formHandlers = __webpack_require__(153);
+
+var _formHandlers2 = _interopRequireDefault(_formHandlers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -40230,7 +40298,13 @@ var EditForm = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var wordId = this.props.wordId;
+      var _props2 = this.props,
+          name = _props2.name,
+          wordId = _props2.wordId,
+          word = _props2.word,
+          translation = _props2.translation;
+      // the name in editform doesnt work??
+
       var showForm = this.state.showForm;
 
       return _react2.default.createElement(
@@ -40248,38 +40322,50 @@ var EditForm = function (_Component) {
           { className: 'EditForm CrudForm ' + (showForm && 'CrudForm_show') },
           !wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editName',
             name: 'name',
-            placeholder: 'Name',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editName');
+            },
+            defaultValue: name
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editWord' + wordId,
             name: 'word',
-            placeholder: 'Word',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editWord' + wordId);
+            },
+            defaultValue: word
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
+            id: 'editTranslation' + wordId,
             name: 'translation',
-            placeholder: 'Translation',
             onChange: this.handleInputChange,
-            onKeyPress: this.handleKeyPress
+            onKeyPress: this.handleKeyPress,
+            onMouseOver: function onMouseOver() {
+              return _formHandlers2.default.handleHover('editTranslation' + wordId);
+            },
+            defaultValue: translation
           }),
           _react2.default.createElement(
             'a',
             { onClick: function onClick() {
                 _this3.handleSubmit();
               } },
-            'let\u2019s edit it'
+            _react2.default.createElement('i', { className: 'fa fa-check' })
           ),
           _react2.default.createElement(
             'a',
             { onClick: function onClick() {
                 _this3.handleClick();
               } },
-            'nevermind'
+            _react2.default.createElement('i', { className: 'fa fa-times' })
           )
         )
       );
@@ -40394,6 +40480,7 @@ var Lists = function (_Component) {
 
       return _react2.default.createElement(_PageLayout2.default, {
         title: 'folder: ' + name,
+        name: name,
         entries: entries,
         fetchEntries: this.fetchEntries,
         changeFolderListState: changeFolderListState,
@@ -40537,8 +40624,11 @@ var Words = function (_Component) {
         isLearningModeOn ? _react2.default.createElement(_LearningModePage2.default, {
           words: entries,
           switchLearnMode: this.switchLearnMode
-        }) : _react2.default.createElement(_PageLayout2.default, {
+        })
+        // i'm passing both title and name, mb this could be done better (same in Lists.js)
+        : _react2.default.createElement(_PageLayout2.default, {
           title: 'list: ' + name,
+          name: name,
           entries: entries,
           fetchEntries: this.fetchEntries,
           type: 'word',
@@ -40602,7 +40692,8 @@ var LearningModePage = function (_Component) {
       words: [],
       wordToFind: [],
       solution: '',
-      icon: null
+      icon: null,
+      clearInput: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.toggleResultIconAndSolution = _this.toggleResultIconAndSolution.bind(_this);
@@ -40636,7 +40727,7 @@ var LearningModePage = function (_Component) {
           words = _state.words,
           wordToFind = _state.wordToFind;
 
-      var goodAnswer = input.toLowerCase() === wordToFind['word'];
+      var goodAnswer = input.toLowerCase() === wordToFind['word'].toLowerCase();
       var itWasTheLastWord = words.length === 1;
 
       if (goodAnswer) {
@@ -40670,13 +40761,16 @@ var LearningModePage = function (_Component) {
   }, {
     key: 'showSolution',
     value: function showSolution(word) {
-      var words = this.state.words;
+      var _state2 = this.state,
+          words = _state2.words,
+          clearInput = _state2.clearInput;
 
       var newWordToFind = this.chooseRandomWord(words);
       this.setState({
         wordToFind: newWordToFind,
         solution: word,
-        icon: null
+        icon: null,
+        clearInput: !clearInput
       });
     }
   }, {
@@ -40697,11 +40791,12 @@ var LearningModePage = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _state2 = this.state,
-          solution = _state2.solution,
-          words = _state2.words,
-          wordToFind = _state2.wordToFind,
-          icon = _state2.icon;
+      var _state3 = this.state,
+          solution = _state3.solution,
+          words = _state3.words,
+          wordToFind = _state3.wordToFind,
+          icon = _state3.icon,
+          clearInput = _state3.clearInput;
 
       if (words !== undefined && words.length > 0) {
         return _react2.default.createElement(
@@ -40716,7 +40811,11 @@ var LearningModePage = function (_Component) {
               (0, _escapeHTML.escapeHTML)(wordToFind['translation']),
               ' ?'
             ),
-            _react2.default.createElement(_LearningModeForm2.default, { handleSubmit: this.handleSubmit, toggleResultIconAndSolution: this.toggleResultIconAndSolution }),
+            _react2.default.createElement(_LearningModeForm2.default, {
+              handleSubmit: this.handleSubmit,
+              toggleResultIconAndSolution: this.toggleResultIconAndSolution,
+              clearInput: clearInput
+            }),
             _react2.default.createElement(
               'p',
               { className: 'ResultIcon' },
@@ -40856,11 +40955,23 @@ var LearningModeForm = function (_Component) {
         input: ''
       });
     }
+
+    // will have to change since this its going to be deprecated in React 17
+
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var next = nextProps.clearInput;
+      var current = this.props.clearInput;
+      next !== current && this.setState({ input: '' });
+    }
   }, {
     key: 'render',
     value: function render() {
       var input = this.state.input;
+      var clearInput = this.props.clearInput;
 
+      console.log(clearInput);
       return _react2.default.createElement(
         'form',
         null,
@@ -40975,7 +41086,7 @@ var MenuButton = function (_Component) {
             className: 'Menu-dropdown ' + (showMenu ? 'Menu-dropdown_show' : ''),
             onClick: this.logout.bind(this)
           },
-          'Logout'
+          'log out'
         )
       );
     }
@@ -41082,30 +41193,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-/***/ }),
-/* 358 */,
-/* 359 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(42);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _App = __webpack_require__(167);
-
-var _App2 = _interopRequireDefault(_App);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
 /***/ })
 /******/ ]);

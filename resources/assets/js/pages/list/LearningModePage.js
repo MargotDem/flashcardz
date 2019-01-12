@@ -11,7 +11,8 @@ export default class LearningModePage extends Component {
       words: [],
       wordToFind: [],
       solution: '',
-      icon: null
+      icon: null,
+      clearInput: false
     })
     this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleResultIconAndSolution = this.toggleResultIconAndSolution.bind(this)
@@ -36,7 +37,7 @@ export default class LearningModePage extends Component {
 
   handleSubmit (input) {
     let { words, wordToFind } = this.state
-    let goodAnswer = input.toLowerCase() === wordToFind['word']
+    let goodAnswer = input.toLowerCase() === wordToFind['word'].toLowerCase()
     let itWasTheLastWord = words.length === 1
 
     if (goodAnswer) {
@@ -69,12 +70,13 @@ export default class LearningModePage extends Component {
   }
 
   showSolution (word) {
-    let { words } = this.state
+    let { words, clearInput } = this.state
     let newWordToFind = this.chooseRandomWord(words)
     this.setState({
       wordToFind: newWordToFind,
       solution: word,
-      icon: null
+      icon: null,
+      clearInput: !clearInput
     })
   }
 
@@ -90,7 +92,7 @@ export default class LearningModePage extends Component {
   }
 
   render () {
-    let { solution, words, wordToFind, icon } = this.state
+    let { solution, words, wordToFind, icon, clearInput } = this.state
     if (words !== undefined && words.length > 0) {
       return (
         <div className='LearningModePage'>
@@ -100,7 +102,11 @@ export default class LearningModePage extends Component {
               {escapeHTML(wordToFind['translation'])} ?
             </p>
 
-            <LearningModeForm handleSubmit={this.handleSubmit} toggleResultIconAndSolution={this.toggleResultIconAndSolution} />
+            <LearningModeForm
+              handleSubmit={this.handleSubmit}
+              toggleResultIconAndSolution={this.toggleResultIconAndSolution}
+              clearInput={clearInput}
+            />
 
             <p className='ResultIcon'>
               {

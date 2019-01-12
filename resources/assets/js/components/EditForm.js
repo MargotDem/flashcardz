@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import formHandlers from '../lib/formHandlers'
+
 export default class EditForm extends Component {
   constructor (props) {
     super(props)
@@ -38,7 +40,7 @@ export default class EditForm extends Component {
       id: id
     })
     .then(response => {
-      console.log(response);
+      console.log(response)
       this.handleClick()
       fetchEntries(name)
     })
@@ -63,7 +65,8 @@ export default class EditForm extends Component {
   }
 
   render () {
-    let { wordId } = this.props
+    let { name, wordId, word, translation } = this.props
+    // the name in editform doesnt work??
     let { showForm } = this.state
     return (
       <span>
@@ -74,32 +77,42 @@ export default class EditForm extends Component {
           {
             !wordId && <input
               type='text'
+              id='editName'
               name='name'
-              placeholder='Name'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editName')}
+              defaultValue={name}
             />
           }
           {
             wordId && <input
               type='text'
+              id={'editWord' + wordId}
               name='word'
-              placeholder='Word'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editWord' + wordId)}
+              defaultValue={word}
             />
           }
           {
             wordId && <input
               type='text'
+              id={'editTranslation' + wordId}
               name='translation'
-              placeholder='Translation'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
+              onMouseOver={() => formHandlers.handleHover('editTranslation' + wordId)}
+              defaultValue={translation}
             />
           }
-          <a onClick={() => { this.handleSubmit() }}>let’s edit it</a>
-          <a onClick={() => { this.handleClick() }}>nevermind</a>
+          <a onClick={() => { this.handleSubmit() }}>
+            <i className={'fa fa-check'} />
+          </a>
+          <a onClick={() => { this.handleClick() }}>
+            <i className={'fa fa-times'} />
+          </a>
         </form>
       </span>
     )
