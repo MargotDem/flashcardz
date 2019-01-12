@@ -87,24 +87,24 @@ export default class EditForm extends Component {
           {
             wordId && <input
               type='text'
-              id='editWord'
+              id={'editWord' + wordId}
               name='word'
               placeholder='Word'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
-              onMouseOver={() => formHandlers.handleHover('editWord')}
+              onMouseOver={() => formHandlers.handleHover('editWord' + wordId)}
               defaultValue={word}
             />
           }
           {
             wordId && <input
               type='text'
-              id='editTranslation'
+              id={'editTranslation' + wordId}
               name='translation'
               placeholder='Translation'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
-              onMouseOver={() => formHandlers.handleHover('editTranslation')}
+              onMouseOver={() => formHandlers.handleHover('editTranslation' + wordId)}
               defaultValue={translation}
             />
           }

@@ -40328,25 +40328,25 @@ var EditForm = function (_Component) {
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
-            id: 'editWord',
+            id: 'editWord' + wordId,
             name: 'word',
             placeholder: 'Word',
             onChange: this.handleInputChange,
             onKeyPress: this.handleKeyPress,
             onMouseOver: function onMouseOver() {
-              return _formHandlers2.default.handleHover('editWord');
+              return _formHandlers2.default.handleHover('editWord' + wordId);
             },
             defaultValue: word
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
-            id: 'editTranslation',
+            id: 'editTranslation' + wordId,
             name: 'translation',
             placeholder: 'Translation',
             onChange: this.handleInputChange,
             onKeyPress: this.handleKeyPress,
             onMouseOver: function onMouseOver() {
-              return _formHandlers2.default.handleHover('editTranslation');
+              return _formHandlers2.default.handleHover('editTranslation' + wordId);
             },
             defaultValue: translation
           }),
