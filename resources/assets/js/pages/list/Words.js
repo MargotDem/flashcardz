@@ -74,8 +74,10 @@ export default class Words extends Component {
             words={entries}
             switchLearnMode={this.switchLearnMode}
           />
+        // i'm passing both title and name, mb this could be done better (same in Lists.js)
           : <PageLayout
             title={'list: ' + name}
+            name={name}
             entries={entries}
             fetchEntries={this.fetchEntries}
             type={'word'}

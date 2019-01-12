@@ -65,7 +65,8 @@ export default class EditForm extends Component {
   }
 
   render () {
-    let { wordId, word, translation } = this.props
+    let { name, wordId, word, translation } = this.props
+    // the name in editform doesnt work??
     let { showForm } = this.state
     return (
       <span>
@@ -78,10 +79,10 @@ export default class EditForm extends Component {
               type='text'
               id='editName'
               name='name'
-              placeholder='Name'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
               onMouseOver={() => formHandlers.handleHover('editName')}
+              defaultValue={name}
             />
           }
           {
@@ -89,7 +90,6 @@ export default class EditForm extends Component {
               type='text'
               id={'editWord' + wordId}
               name='word'
-              placeholder='Word'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
               onMouseOver={() => formHandlers.handleHover('editWord' + wordId)}
@@ -101,7 +101,6 @@ export default class EditForm extends Component {
               type='text'
               id={'editTranslation' + wordId}
               name='translation'
-              placeholder='Translation'
               onChange={this.handleInputChange}
               onKeyPress={this.handleKeyPress}
               onMouseOver={() => formHandlers.handleHover('editTranslation' + wordId)}

@@ -81,6 +81,7 @@ export default class PageLayout extends Component {
       type,
       backButton,
       title,
+      name,
       id,
       editDeleteButtons,
       learnModeButton,
@@ -109,6 +110,7 @@ export default class PageLayout extends Component {
                 page={page}
                 id={id}
                 fetchEntries={fetchEntries}
+                name={name}
               />
               &nbsp;
               &bull;

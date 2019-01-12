@@ -4738,6 +4738,7 @@ var PageLayout = function (_Component) {
           type = _props3.type,
           backButton = _props3.backButton,
           title = _props3.title,
+          name = _props3.name,
           id = _props3.id,
           editDeleteButtons = _props3.editDeleteButtons,
           learnModeButton = _props3.learnModeButton,
@@ -4775,7 +4776,8 @@ var PageLayout = function (_Component) {
             _react2.default.createElement(_EditForm2.default, {
               page: page,
               id: id,
-              fetchEntries: fetchEntries
+              fetchEntries: fetchEntries,
+              name: name
             }),
             '\xA0 \u2022 \xA0',
             _react2.default.createElement(_DeleteForm2.default, {
@@ -40297,9 +40299,12 @@ var EditForm = function (_Component) {
       var _this3 = this;
 
       var _props2 = this.props,
+          name = _props2.name,
           wordId = _props2.wordId,
           word = _props2.word,
           translation = _props2.translation;
+      // the name in editform doesnt work??
+
       var showForm = this.state.showForm;
 
       return _react2.default.createElement(
@@ -40319,18 +40324,17 @@ var EditForm = function (_Component) {
             type: 'text',
             id: 'editName',
             name: 'name',
-            placeholder: 'Name',
             onChange: this.handleInputChange,
             onKeyPress: this.handleKeyPress,
             onMouseOver: function onMouseOver() {
               return _formHandlers2.default.handleHover('editName');
-            }
+            },
+            defaultValue: name
           }),
           wordId && _react2.default.createElement('input', {
             type: 'text',
             id: 'editWord' + wordId,
             name: 'word',
-            placeholder: 'Word',
             onChange: this.handleInputChange,
             onKeyPress: this.handleKeyPress,
             onMouseOver: function onMouseOver() {
@@ -40342,7 +40346,6 @@ var EditForm = function (_Component) {
             type: 'text',
             id: 'editTranslation' + wordId,
             name: 'translation',
-            placeholder: 'Translation',
             onChange: this.handleInputChange,
             onKeyPress: this.handleKeyPress,
             onMouseOver: function onMouseOver() {
@@ -40477,6 +40480,7 @@ var Lists = function (_Component) {
 
       return _react2.default.createElement(_PageLayout2.default, {
         title: 'folder: ' + name,
+        name: name,
         entries: entries,
         fetchEntries: this.fetchEntries,
         changeFolderListState: changeFolderListState,
@@ -40620,8 +40624,11 @@ var Words = function (_Component) {
         isLearningModeOn ? _react2.default.createElement(_LearningModePage2.default, {
           words: entries,
           switchLearnMode: this.switchLearnMode
-        }) : _react2.default.createElement(_PageLayout2.default, {
+        })
+        // i'm passing both title and name, mb this could be done better (same in Lists.js)
+        : _react2.default.createElement(_PageLayout2.default, {
           title: 'list: ' + name,
+          name: name,
           entries: entries,
           fetchEntries: this.fetchEntries,
           type: 'word',

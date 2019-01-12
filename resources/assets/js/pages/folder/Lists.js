@@ -55,6 +55,7 @@ export default class Lists extends Component {
     return (
       <PageLayout
         title={'folder: ' + name}
+        name={name}
         entries={entries}
         fetchEntries={this.fetchEntries}
         changeFolderListState={changeFolderListState}
